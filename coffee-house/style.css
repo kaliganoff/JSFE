@@ -24,6 +24,9 @@ header {
 }
 
 .hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     border-radius: 40px;
     background: url(assets/img-hero.png),lightgray 50%;
     background-repeat: no-repeat;
@@ -31,4 +34,32 @@ header {
     height: 644px;
     max-width: 1360px;
     padding: 100px;
+}
+
+.hero-description {
+    display: flex;
+    width: 530px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.whole-slider {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.arrow-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 100px;
+    border: 1px solid var(--border-dark, #665F55);
+    background-color: #E1D4C9;
+}
+
+.slide {
+    display: flex;
+    flex-direction: column;
 }
