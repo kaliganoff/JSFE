@@ -63,3 +63,7 @@ header {
     display: flex;
     flex-direction: column;
 }
+
+.about-wrapper {
+    display: flex;
+}
