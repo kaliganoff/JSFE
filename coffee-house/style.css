@@ -17,10 +17,12 @@ header {
     gap: 40px;
 }
 
-.menu-button {
+.button-link {
+    color: var(--text-dark, #403F3D);
     display: flex;
     align-items: center;
     gap: 8px;
+    text-decoration: none;
 }
 
 .hero-section {

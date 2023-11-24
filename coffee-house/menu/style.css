@@ -23,6 +23,33 @@ header {
     gap: 8px;
 }
 
+.button-emoji {
+    display: flex;
+    padding: 3px 7px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    background: var(--background-body, #E1D4C9);
+    color: var(--text-dark, #403F3D);
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+}
+
+.menu-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1360px;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 40px;
+}
+
 footer {
     display: flex;
     max-width: 1360px;
