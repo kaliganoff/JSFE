@@ -1,0 +1,36 @@
+body {
+    background-color: #E1D4C9;
+}
+
+.page-wrapper {
+    padding: 20px 40px 40px 40px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.menu-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+footer {
+    display: flex;
+    max-width: 1360px;
+    padding: 100px;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    align-self: stretch;
+    border-radius: 40px;
+    background: var(--background-container, #665F55);
+}

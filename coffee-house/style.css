@@ -67,3 +67,30 @@ header {
 .about-wrapper {
     display: flex;
 }
+
+.app-section {
+    display: flex;
+}
+
+.store-button {
+    display: flex;
+    width: 200px;
+    padding: 12px 20px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 100px;
+    border: 1px solid var(--border-dark, #665F55);
+    background-color: #E1D4C9;
+}
+
+footer {
+    display: flex;
+    max-width: 1360px;
+    padding: 100px;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    align-self: stretch;
+    border-radius: 40px;
+    background: var(--background-container, #665F55);
+}
