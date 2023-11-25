@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #E1D4C9;
     margin: 0;
@@ -53,6 +57,7 @@ header {
     justify-content: center;
     align-items: flex-start;
     gap: 40px;
+    height: 444px;
 }
 
 .premium {
@@ -60,6 +65,7 @@ header {
     font-feature-settings: 'clig' off, 'liga' off;
     font-size: 72px;
     line-height: 105%;
+    margin-bottom: 0;
 }
 
 .inviting {
@@ -94,6 +100,11 @@ header {
     font-feature-settings: 'clig' off, 'liga' off;
     font-size: 60px;
     line-height: 125%;
+}
+
+.slide-img {
+    width: 480px;
+    height: 480px;
 }
 
 .name-price {
@@ -131,14 +142,33 @@ header {
 .slide {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 480px;
 }
 
 .about-wrapper {
     display: flex;
 }
 
+.resource {
+    text-align: justify;
+}
+
 .app-section {
     display: flex;
+}
+
+.app-text {
+    display: flex;
+    flex-direction: column;
+    width: 630px;
+    height: 342px;
+    gap: 40px;
+}
+
+.download {
+    margin-bottom: 0;
+    text-align: left;
 }
 
 .store-button {
@@ -179,6 +209,10 @@ footer {
     background: var(--background-container, #665F55);
 }
 
+.sip {
+    text-align: left;
+}
+
 .header3 {
     color: var(--text-light, #E1D4C9);
     font-feature-settings: 'clig' off, 'liga' off;
@@ -188,7 +222,27 @@ footer {
 
 .contacts-text {
     color: var(--text-light, #E1D4C9);
-    ont-feature-settings: 'clig' off, 'liga' off;
+    font-feature-settings: 'clig' off, 'liga' off;
     font-size: 16px;
     line-height: 150%;
+    margin-bottom: 16px;
+}
+
+.contacts-text > span {
+    margin-left: 8px;
+}
+
+.social-link-container {
+    display: flex;
+    gap: 12px;
+}
+
+.socials-link {
+    border-radius: 100px;
+    border: 1px solid var(--border-light, #C1B6AD);
+    display: flex;
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
 }
