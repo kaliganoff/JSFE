@@ -1,6 +1,9 @@
 body {
     background-color: #E1D4C9;
     margin: 0;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
 }
 
 .page-wrapper {
@@ -12,6 +15,8 @@ body {
 header {
     display: flex;
     justify-content: space-between;
+    font-size: 16px;
+    line-height: 150%;
 }
 
 .nav-list {
@@ -24,6 +29,14 @@ header {
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+.header2 {
+    color: var(--text-dark, #403F3D);
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 60px;
+    line-height: 125%;
 }
 
 .button-emoji {
@@ -53,6 +66,24 @@ header {
     gap: 40px;
 }
 
+.name-price {
+    color: var(--text-dark, #403F3D);
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 125%;
+}
+
+.medium-text {
+    color: var(--text-dark, #403F3D);
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+}
+
 footer {
     display: flex;
     max-width: 1360px;
@@ -63,4 +94,18 @@ footer {
     align-self: stretch;
     border-radius: 40px;
     background: var(--background-container, #665F55);
+}
+
+.header3 {
+    color: var(--text-light, #E1D4C9);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 24px;
+    line-height: 125%;
+}
+
+.contacts-text {
+    color: var(--text-light, #E1D4C9);
+    ont-feature-settings: 'clig' off, 'liga' off;
+    font-size: 16px;
+    line-height: 150%;
 }
