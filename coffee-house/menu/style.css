@@ -45,6 +45,11 @@ header {
     gap: 40px;
 }
 
+.text-accent {
+    color: var(--text-accent, #B0907A);
+    font-style: italic;
+}
+
 .header2 {
     margin-top: 0px;
     color: var(--text-dark, #403F3D);
@@ -178,7 +183,9 @@ footer {
 .sip {
     margin-top: -2px;
     text-align: left;
-    margin-bottom: 40px;}
+    margin-bottom: 40px;
+    color: var(--text-light, #E1D4C9);
+}
 
 .header3 {
     color: var(--text-light, #E1D4C9);
