@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <title>Coffee House</title>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header>
+            <a href="index.html"><img src="assets/logo.svg" alt="logo"></a>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="#favorite">Favorite coffee</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#app">Mobile app</a></li>
+                    <li><a href="#contacts">Contact us</a></li>
+                </ul>
+            </nav>
+            <button class="menu-button">
+                <a class="button-link" href="menu/menu.html">
+                    <p>Menu</p>
+                    <img src="assets/coffee-cup.svg" alt="coffee-cup">
+                </a>
+            </button>
+        </header>
+        <main>
+            <section class="hero-section">
+                <div class="hero-description">
+                    <h1 class="premium"><span class="text-accent">Enjoy</span> premium coffee at our charming cafe</h1>
+                    <p class="inviting">With its inviting atmosphere and delicious coffee options, the Coffee House Resource is a popular destination for coffee lovers and those seeking a warm and inviting space to enjoy their favorite beverage.</p>
+                    <a href="menu/menu.html"><button class="hero-button">Menu <img class="hidden" src="assets/coffee-cup.svg" alt=""></button></a>
+                </div>
+            </section>
+            <section class="favorite-section" id="favorite">
+                <p class="header2 choose">Choose your <span class="text-accent">favorite</span> coffee</p>
+                <div class="whole-slider">
+                    <button class="arrow-button"><img src="assets/arrow-left.svg" alt="arrow-left"></button>
+                    <div class="slider-wrapper">
+                        <div class="slide">
+                            <img class="slide-img" src="assets/coffee-slider-1.png" alt="frappucino">
+                            <h3 class="name-price">S’mores Frappuccino</h3>
+                            <p class="medium-text">This new drink takes an espresso and mixes it with brown sugar and cinnamon before being topped with oat milk.</p>
+                            <p class="name-price">$5.50</p>
+                        </div>  
+                    </div>
+                    <button class="arrow-button"><img src="assets/arrow-right.svg" alt="arrow-right"></button>
+                </div>
+                <div class="pagination-wrapper">
+                    <div class="pagination active-pagi"></div>
+                    <div class="pagination"></div>
+                    <div class="pagination"></div>
+                </div>
+            </section>
+            <section class="about-section" id="about">
+                <p class="header2 resource">Resource is <span class="text-accent">the perfect and cozy place</span> where you can enjoy a variety of hot beverages, relax, catch up with friends, or get some work done.</p>
+                <div class="about-wrapper">
+                    <div class="img-pair"><img src="assets/about-1.png" alt="about-1"><img src="assets/about-2.png" alt="about-2"></div>
+                    <div class="img-pair"><img src="assets/about-3.png" alt="about-3"><img src="assets/about-4.png" alt="about-4"></div>
+                </div>
+            </section>
+            <section class="app-section" id="app">
+                <div class="app-text">
+                    <p class="header2 download"><span class="text-accent">Download</span> our apps to start ordering</p>
+                    <p class="medium-text download">Download the Resource app today and experience the comfort of ordering your favorite coffee from wherever you are</p>
+                    <div class="app-buttons">
+                        <button class="store-button"><img src="assets/icon.svg" alt="app-store"><div>Available on the <br><span class="platform">App Store</span></div></button>
+                        <button class="store-button"><img src="assets/icon2.svg" alt="google-play"><div>Available on <br><span class="platform">Google Play</span></div></button>
+                    </div>
+                </div>
+                <img src="assets/mobile-screens.png" alt="mobile-screens">
+            </section>
+        </main>
+        <footer id="contacts">
+            <div class="socials">
+                <p class="header2 sip">Sip, Savor, Smile.<br> <span class="text-accent">It’s coffee time!</span></p>
+                <div class="social-link-container">
+                    <a class="socials-link" href="https://twitter.com"><img class="socials-icon" src="assets/twitter.svg" alt="twitter"></a><a class="socials-link" href="https://www.instagram.com/"><img  class="socials-icon" src="assets/instagram.svg" alt="instagram"></a><a class="socials-link" href="https://www.facebook.com/"><img  class="socials-icon" src="assets/facebook.svg" alt="facebook"></a>
+                </div>
+            </div>
+            <div class="contacts">
+                <p class="header3">Contact us</p>
+                <a href="https://maps.app.goo.gl/AD464d3uwHZdXRJS6" target="_blank">
+                    <div class="contacts-text"><img src="assets/pin-alt.svg" alt="pin-alt"><span>8558 Green Rd.,  LA</span></div>
+                </a>
+                <a href="tel: +1 (603) 555-0123">
+                    <div class="contacts-text"><img src="assets/phone.svg" alt="phone"><span>+1 (603) 555-0123</span></div>
+                </a>
+                <div class="contacts-text"><img src="assets/clock.svg" alt="clock"><span>Mon-Sat: 9:00 AM – 23:00 PM</span></div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
