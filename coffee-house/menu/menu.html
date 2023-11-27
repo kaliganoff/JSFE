@@ -7,30 +7,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <title>Menu</title>
 </head>
 <body>
     <div class="page-wrapper">
         <header>
-            <img src="../assets/logo.svg" alt="logo">
+            <a href="../index.html"><img src="../assets/logo.svg" alt="logo"></a>
             <nav>
                 <ul class="nav-list">
-                    <li>Favorite coffee</li>
-                    <li>About</li>
-                    <li>Mobile app</li>
-                    <li>Contact us</li>
+                    <li><a href="../index.html#favorite">Favorite coffee</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#app">Mobile app</a></li>
+                    <li><a href="#contacts">Contact us</a></li>
                 </ul>
             </nav>
-            <div class="menu-button">
+            <button class="menu-button" disabled>
                 <p>Menu</p>
                 <img src="../assets/coffee-cup.svg" alt="coffee-cup">
-            </div>
+            </button>
         </header>
         <main>
             <section class="menu-section">
                 <h1 class="header2">Behind each of our cups hides an <span class="text-accent">amazing surprise</span></h1>
                 <div class="buttons">
-                    <button class="button active"><img class="button-emoji" src="../assets/cup-emoji.svg" alt="cup-emoji">Coffee</button><button class="button"><img class="button-emoji" src="../assets/kettle-emoji.svg" alt="kettle-emoji">Tea</button><button class="button"><img class="button-emoji" src="../assets/cake-emoji.svg" alt="cake-emoji">Dessert</button>
+                    <button class="button active" disabled><img class="button-emoji" src="../assets/cup-emoji.svg" alt="cup-emoji">Coffee</button><button class="button"><img class="button-emoji" src="../assets/kettle-emoji.svg" alt="kettle-emoji">Tea</button><button class="button"><img class="button-emoji" src="../assets/cake-emoji.svg" alt="cake-emoji">Dessert</button>
                 </div>
                 <div class="menu-wrapper">
                     <div class="menu-item">
@@ -84,17 +85,21 @@
                 </div>
             </section>
         </main>
-        <footer>
+        <footer id="contacts">
             <div class="socials">
                 <p class="header2 sip">Sip, Savor, Smile.<br> <span class="text-accent">It’s coffee time!</span></p>
                 <div class="social-link-container">
-                    <a class="socials-link" href=""><img class="socials-icon" src="../assets/twitter.svg" alt="twitter"></a><a class="socials-link" href=""><img  class="socials-icon" src="../assets/instagram.svg" alt="instagram"></a><a class="socials-link" href=""><img  class="socials-icon" src="../assets/facebook.svg" alt="facebook"></a>
+                    <a class="socials-link" href="https://twitter.com"><img class="socials-icon" src="../assets/twitter.svg" alt="twitter"></a><a class="socials-link" href="https://www.instagram.com/"><img  class="socials-icon" src="../assets/instagram.svg" alt="instagram"></a><a class="socials-link" href="https://www.facebook.com/"><img  class="socials-icon" src="../assets/facebook.svg" alt="facebook"></a>
                 </div>
             </div>
             <div class="contacts">
                 <p class="header3">Contact us</p>
-                <div class="contacts-text"><img src="../assets/pin-alt.svg" alt="pin-alt"><span>8558 Green Rd.,  LA</span></div>
-                <div class="contacts-text"><img src="../assets/phone.svg" alt="phone"><span>+1 (603) 555-0123</span></div>
+                <a href="https://maps.app.goo.gl/AD464d3uwHZdXRJS6" target="_blank">
+                    <div class="contacts-text"><img src="../assets/pin-alt.svg" alt="pin-alt"><span>8558 Green Rd.,  LA</span></div>
+                </a>
+                <a href="tel: +1 (603) 555-0123">
+                    <div class="contacts-text"><img src="../assets/phone.svg" alt="phone"><span>+1 (603) 555-0123</span></div>
+                </a>
                 <div class="contacts-text"><img src="../assets/clock.svg" alt="clock"><span>Mon-Sat: 9:00 AM – 23:00 PM</span></div>
             </div>
         </footer>
