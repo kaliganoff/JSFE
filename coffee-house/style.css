@@ -263,7 +263,7 @@ header > a > img:hover {
 
 .resource {
     margin-top: 0px;
-    height: 225px;
+    height: auto;
     text-align: left;
     margin-bottom: 40px;
 }
@@ -436,4 +436,42 @@ footer {
 
 a {
     text-decoration: none;
+}
+
+@media screen and (max-width: 780px) {
+    .nav-list {
+        display: none;
+    }
+
+    .menu-button {
+        display: none;
+    }
+
+    .about-wrapper {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .img-pair:first-child img:last-child {
+        display: none;
+    }
+
+    .img-pair:last-child img:first-child {
+        display: none;
+    }
+
+    .app-section {
+        flex-direction: column;
+    }
+
+    footer {
+        max-height: 736px;
+        flex-direction: column;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .hero-button img {
+        display: inline;
+    }
 }
