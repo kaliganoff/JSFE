@@ -80,7 +80,7 @@ header > a > img:hover {
     font-feature-settings: 'clig' off, 'liga' off;
     font-size: 60px;
     line-height: 125%;
-    width: 800px;
+    max-width: 800px;
     margin-bottom: 0px;
 }
 
@@ -285,4 +285,35 @@ footer {
 
 a {
     text-decoration: none;
+}
+
+@media screen and (max-width: 780px) {
+    .nav-list {
+        display: none;
+    }
+
+    .menu-button {
+        display: none;
+    }
+
+    .menu-wrapper {
+        grid-template: 1fr 1fr / 1fr 1fr;
+    }
+
+    .menu-item {
+        min-height: 536px;
+    }
+
+    .hide-tablet {
+        display: none;
+    }
+
+    footer {
+        max-height: 736px;
+        flex-direction: column;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+
 }
