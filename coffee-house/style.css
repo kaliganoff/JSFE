@@ -76,6 +76,7 @@ header > a > img:hover {
     align-items: flex-start;
     border-radius: 40px;
     background: url(assets/img-hero.png),lightgray 50%;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 644px;
@@ -464,9 +465,20 @@ a {
         flex-direction: column;
     }
 
+    .app-section > img {
+        display: block;
+        height: 630px;
+        width: 630px;
+    }
+
+    .app-text {
+        padding-top: 0px;
+    }
+
     footer {
         max-height: 736px;
         flex-direction: column;
+        align-items: flex-start;
     }
 }
 
