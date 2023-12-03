@@ -202,6 +202,10 @@ header > a > img:hover {
     margin-left: 20px;
 }
 
+.refresh-button {
+    display: none;
+}
+
 footer {
     display: flex;
     max-width: 1360px;
@@ -342,6 +346,32 @@ a {
         max-height: 736px;
         flex-direction: column;
         align-items: flex-start;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .page-wrapper {
+        padding: 20px 16px 40px 16px;
+    }
+
+    .buttons {
+        gap: 8px;
+    }
+
+    .header2 {
+        font-size: 32px;
+    }
+
+    .menu-wrapper {
+        grid-template: 1fr 1fr 1fr 1fr / 1fr;
+    }
+
+    footer {
+        padding: 60px 16px;
+    }
+
+    .socials {
+        width: 100%;
     }
 }
 
