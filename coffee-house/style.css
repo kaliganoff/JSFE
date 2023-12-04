@@ -26,8 +26,12 @@ header {
     margin-bottom: 20px;
 }
 
+@media (hover: hover) and (pointer: fine) {
+
 header > a > img:hover {
     opacity: 0.5;
+}
+
 }
 
 .nav-list {
@@ -43,8 +47,16 @@ header > a > img:hover {
     transition: 1s;
 }
 
+@media (hover: hover) and (pointer: fine) {
+
 .nav-list > li > a:hover {
     border-bottom: 2px solid #403F3D;
+}
+
+}
+
+.burger {
+    display: none;
 }
 
 .menu-button {
@@ -66,8 +78,12 @@ header > a > img:hover {
     height: 25px;
 }
 
+@media (hover: hover) and (pointer: fine) {
+
 .menu-button:hover {
     border-bottom: 2px solid #403F3D;
+}
+
 }
 
 .hero-section {
@@ -76,6 +92,7 @@ header > a > img:hover {
     align-items: flex-start;
     border-radius: 40px;
     background: url(assets/img-hero.png),lightgray 50%;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 644px;
@@ -217,10 +234,13 @@ header > a > img:hover {
     transition: 1s;
 }
 
+@media (hover: hover) and (pointer: fine) {
+
 .arrow-button:hover {
     background: var(--background-container, #665F55);
     cursor: pointer;
 }
+
 
 .arrow-button:hover img {
     content:url(assets/arrow-right-hover.svg);
@@ -228,6 +248,8 @@ header > a > img:hover {
 
 .arrow-button:first-child:hover img {
     transform: scale(-1);
+}
+
 }
 
 .slide {
@@ -263,7 +285,7 @@ header > a > img:hover {
 
 .resource {
     margin-top: 0px;
-    height: 225px;
+    height: auto;
     text-align: left;
     margin-bottom: 40px;
 }
@@ -323,6 +345,8 @@ header > a > img:hover {
     transition: 1s;
 }
 
+@media (hover: hover) and (pointer: fine) {
+
 .store-button:hover {
     background: var(--background-container, #665F55);
     color: var(--text-light, #E1D4C9);
@@ -341,6 +365,7 @@ header > a > img:hover {
     content:url("assets/googleplay-hover.svg");
 }
 
+}
 
 .platform {
     color: var(--text-dark, #403F3D);
@@ -401,9 +426,13 @@ footer {
     height: 28px;
 }
 
+@media (hover: hover) and (pointer: fine) {
+
 .contacts-text:hover {
     border-bottom: 2px solid #E1D4C9;
     cursor: pointer;
+}
+
 }
 
 .contacts-text > span {
@@ -426,6 +455,8 @@ footer {
     transition: 1s;
 }
 
+@media (hover: hover) and (pointer: fine) {
+
 .socials-link:hover {
     background: var(--background-body, #E1D4C9);
 }
@@ -434,6 +465,373 @@ footer {
     filter: invert(50%) sepia(6%) saturate(297%) hue-rotate(1deg) brightness(95%) contrast(84%);
 }
 
+}
+
 a {
     text-decoration: none;
 }
+
+@media screen and (max-width: 1439px) {
+    .page-wrapper {
+        width: 100%;
+    }
+
+    .img-pair img {
+        width: 100%;
+        height: auto;
+    }
+
+    .app-section {
+        gap: 6%;
+    }
+
+    .app-text {
+        height: 100%;
+    }
+
+    .app-section > img {
+        width: 46%;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 890px) {
+    .app-section {
+        flex-direction: column;
+    }
+
+    footer {
+        max-height: 736px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 100px 60px;
+    }
+
+    .contacts {
+        margin-top: 2px;
+    }
+}
+
+
+@media screen and (max-width: 780px) {
+    .nav-list {
+        display: none;
+    }
+
+    .burger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 44px;
+        width: 44px;
+        gap: 5px;
+        border-radius: 100px;
+        border: 1px solid var(--border-dark, #665F55);
+    }
+
+    .bun {
+        width: 16px;
+        height: 1px;
+        background-color: var(--text-dark, #403F3D);
+    }
+
+    .menu-button {
+        display: none;
+    }
+
+    .hero-section {
+        padding: 100px 60px;
+    }
+
+    .about-wrapper {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .img-pair img {
+        height: 590px;
+    }
+
+    .img-pair:first-child img:last-child {
+        display: none;
+    }
+
+    .img-pair:last-child img:first-child {
+        display: none;
+    }
+
+    .app-section {
+        flex-direction: column;
+        gap: 100px
+    }
+
+    .download {
+        width: 688px;
+    }
+
+    .app-section > img {
+        display: block;
+        height: 630px;
+        width: 630px;
+        margin-left: 30px;
+    }
+
+    .app-text {
+        padding-top: 0px;
+    }
+
+    footer {
+        max-height: 736px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 100px 60px;
+    }
+
+    .contacts {
+        margin-top: 2px;
+    }
+}
+
+@media screen and (max-width: 745px) {
+    .hero-description {
+        width: 100%;
+        height: auto;
+    }
+
+    .premium {
+        font-size: 3em;
+    }
+
+
+    .slider-wrapper {
+        width: 69%;
+    }
+    
+    .slide {
+        width: 100%;
+    }
+
+    .slide-img {
+        width: 69%;
+        height: auto;
+    }
+
+    .app-section {
+        width: 100%;
+    }
+
+    .app-text {
+        width: 100%;
+    }
+
+    .download {
+        width: 100%;
+    }
+
+    .app-section > img {
+        width: 100%;
+        height: auto;
+    }
+
+    .socials {
+        width: 100%;
+    }
+
+    .sip {
+        font-size: 3em;
+    }
+}
+
+@media screen and (max-width: 526px) {
+    .page-wrapper {
+        padding: 20px 16px 40px 16px;
+    }
+
+    .hero-section {
+        padding: 60px 16px;
+    }
+
+    .header2 {
+        font-size: 32px;
+    }
+
+    .premium {
+        font-size: 42px;
+    }
+
+    .inviting {
+        font-size: 16px;
+    }
+
+    .whole-slider {
+        justify-content: center;
+    }
+
+    .arrow-button {
+        display: none;
+    }
+
+    .about-wrapper {
+        align-items: center;
+    }
+
+    .img-pair {
+        width: 348px;
+        height: 590px;
+        background-position: center;
+        border-radius: 20px;
+    }
+
+    .img-pair:first-child {
+        background-image: url(assets/about-1.png);
+    }
+
+    .img-pair:last-child {
+        background-image: url(assets/about-4.png);
+    }
+
+    .img-pair img {
+        display: none;
+    }
+
+    .app-section {
+        gap: 40px;
+    }
+
+    .download {
+        width: 348px;
+    }
+
+    .app-text {
+        width: 348px;
+        height: 380px;
+    }
+
+    .app-buttons {
+        flex-direction: column;
+    }
+
+    .app-section > img {
+        width: 348px;
+        height: 348px;
+        margin-left: 0px;
+    }
+
+    .sip {
+        font-size: 2em;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .page-wrapper {
+        padding: 20px 16px 40px 16px;
+    }
+
+    .hero-section {
+        padding: 60px 16px;
+        width: 348px;
+        height: 552px;
+    }
+
+    .hero-description {
+        width: 100%;
+    }
+
+    .premium {
+        font-size: 42px;
+        width: 316px;
+        line-height: 115%;
+    }
+
+    .inviting {
+        width: 316px;
+    }
+
+    .header2 {
+        font-size: 32px;
+    }
+
+    .arrow-button {
+        display: none;
+    }
+
+    .whole-slider {
+        justify-content: space-between;
+    }
+
+    .slide {
+        width: 348px;
+    }
+
+    .slide-img {
+        height: 348px;
+        width: 348px;
+    }
+
+    .img-pair {
+        width: 348px;
+        height: 590px;
+        background-position: center;
+        border-radius: 20px;
+    }
+
+    .img-pair:first-child {
+        background-image: url(assets/about-1.png);
+    }
+
+    .img-pair:last-child {
+        background-image: url(assets/about-4.png);
+    }
+
+    .img-pair img {
+        display: none;
+    }
+
+    .app-section {
+        gap: 40px;
+    }
+
+    .download {
+        width: 348px;
+    }
+
+    .app-text {
+        width: 348px;
+        height: 380px;
+    }
+
+    .app-buttons {
+        flex-direction: column;
+    }
+
+    .app-section > img {
+        width: 348px;
+        height: 348px;
+        margin-left: 0px;
+    }
+
+    footer {
+        height: 526px;
+        padding: 60px 16px;
+        gap: 40px;
+    }
+
+    .socials {
+        width: 100%;
+    }
+
+    .contacts-text {
+        margin-top: -3px;
+        margin-bottom: 19px;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .hero-button img {
+        display: inline;
+    }
+
+
+}
+
