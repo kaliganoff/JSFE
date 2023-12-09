@@ -1,6 +1,6 @@
 const burger = document.querySelector('.burger');
 const burgerMenu = document.querySelector('.burger-menu');
-const burgerNavList = document.querySelector('.burger-nav-list');
+const burgerNavLinks = document.querySelectorAll('.burger-menu a');
 const leftArrow = document.querySelector('#larrow');
 const rightArrow = document.querySelector('#rarrow');
 const sliderWrapper = document.querySelector('.slider-wrapper');
@@ -10,17 +10,26 @@ const pagination = document.querySelectorAll('.pagination div');
 
 let slidePos = 0;
 let activeSlide = 0;
-let slWidth = sliderWrapper.clientWidth;
+let linkHref;
+if (sliderWrapper) {
+    let slWidth = sliderWrapper.clientWidth
+};
 
 burger.addEventListener('click', () => {
     burger.classList.toggle('burger-active');
     burgerMenu.classList.toggle('menu-active');
 });
 
-burgerNavList.addEventListener('click', () => {
+burgerNavLinks.forEach(link => link.addEventListener('click', (e) => {
+    linkHref = link.href;
+    e.preventDefault();
     burger.classList.toggle('burger-active');
     burgerMenu.classList.toggle('menu-active');
-});
+    setTimeout(() => {
+        window.location = linkHref;
+    }, 500);
+})
+);
 
 leftArrow.addEventListener('click', slideLeft);
 
