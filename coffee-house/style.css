@@ -186,6 +186,22 @@ header > a > img:hover {
     margin-bottom: 40px;
 }
 
+.slider-wrapper {
+    display: flex;
+    overflow: hidden;
+    width: 480px;
+}
+
+.slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    left: 0px;
+    transition: 1s;
+}
+
 .slide-img {
     width: 480px;
     height: 480px;
@@ -251,13 +267,6 @@ header > a > img:hover {
 
 }
 
-.slide {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 480px;
-}
-
 .pagination-wrapper {
     display: flex;
     gap: 12px;
@@ -274,6 +283,19 @@ header > a > img:hover {
 
 .active-pagi {
     background: var(--border-dark, #665F55);
+    width: 0%;
+    height: 4px;
+    animation: pagi-anima;
+    animation-duration: 5s;
+}
+
+@keyframes pagi-anima {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
 }
 
 .about-wrapper {
@@ -564,7 +586,7 @@ a {
         height: 100%;
         background-color: var(--background-body, #E1D4C9);
         z-index: 0;
-        gap: 100px;
+        gap: 93px;
         font-size: 32px;
         transition: 1s;
     }
@@ -578,10 +600,10 @@ a {
         flex-direction: column;
         align-items: center;
         list-style: none;
-        gap: 60px;
+        gap: 75px;
         padding-left: 0;
         width: 100%;
-        margin-top: 160px;
+        margin-top: 165px;
     }
 
     .burger-nav-list a {
@@ -825,7 +847,7 @@ a {
         justify-content: space-between;
     }
 
-    .slide {
+    .slider-wrapper {
         width: 348px;
     }
 
