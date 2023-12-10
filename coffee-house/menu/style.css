@@ -160,7 +160,8 @@ header > a > img:hover {
 
 .menu-wrapper {
     display: grid;
-    grid-template: 506px 506px  / 310px 310px 310px 310px;
+    grid-template: 506px  / 310px 310px 310px 310px;
+    grid-auto-rows: 506px;
     gap: 40px;
 }
 
