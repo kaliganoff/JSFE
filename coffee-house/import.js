@@ -23,6 +23,7 @@ const closeButton = document.querySelector('.close-button');
 
 
 let isHiddenForTea;
+let price;
 let priceAfterSize;
 
 
@@ -95,6 +96,7 @@ menuItems.forEach(item => item.addEventListener('click', openModal));
 function openModal() {
     overlay.style.display = 'block';
     modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
     if (products[this.dataset.id].category === 'coffee') {
         modalImg.src = `../assets/${products[this.dataset.id].category}-${Number(this.dataset.id) + 1}.png`;
     } else if (products[this.dataset.id].category === 'tea') {
@@ -110,14 +112,16 @@ function openModal() {
     additives[2].innerHTML = `<span>3</span>${products[this.dataset.id].additives[2].name}`;
     modalName.innerHTML = products[this.dataset.id].name;
     modalDescription.innerHTML = products[this.dataset.id].description;
-    modalPrice.innerHTML = '$' + products[this.dataset.id].price;
-    modalPrice.dataset.price = products[this.dataset.id].price;
+    price = +products[this.dataset.id].price;
+    modalPrice.innerHTML = '$' + price;
+    modalPrice.dataset.price = price;
 };
 
 closeButton.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
 
 function closeModal() {
+    document.body.style.overflow = 'auto';
     overlay.style.display = 'none';
     modal.style.display = 'none';
     sizes.forEach(button => button.classList.remove('modal-active'));
@@ -127,19 +131,32 @@ function closeModal() {
 
 sizes.forEach(button => button.addEventListener('click', () => {
     modalPrice.innerHTML = '$' + String(+modalPrice.dataset.price + +button.dataset.add);
-    priceAfterSize = +modalPrice.dataset.price + +button.dataset.add;
+    price = +modalPrice.dataset.price + +button.dataset.add;
     for (let i = 0; i <= 2; i++) {
         if(sizes[i].classList.contains('modal-active')) {
             sizes[i].classList.remove('modal-active');
         }
     };
     button.classList.add('modal-active');
+    priceAfterSize = price;
+    additives.forEach(button => button.classList.remove('modal-active'));
 }));
 
 additives.forEach(button => button.addEventListener('click', () => {
-    modalPrice.innerHTML = '$' + String(priceAfterSize + 0.5);
-    priceAfterSize += 0.5;
     button.classList.toggle('modal-active');
+    let count = 0;
+    for (let i = 0; i < 3; i++) {
+        if (additives[i].classList.contains('modal-active')) {
+            count += 1;
+        };
+    }
+    price += 0.5 * count;
+    modalPrice.innerHTML = '$' + String(price);
+    price = Number(modalPrice.dataset.price);
+    if (priceAfterSize) {
+        price = priceAfterSize;
+    }
+    count = 0;
 }))
 
 window.addEventListener('resize', () => {

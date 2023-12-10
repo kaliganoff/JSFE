@@ -6,6 +6,7 @@ const rightArrow = document.querySelector('#rarrow');
 const sliderWrapper = document.querySelector('.slider-wrapper');
 const slide = document.querySelectorAll('.slide');
 const pagination = document.querySelectorAll('.pagination div');
+const heroVid = document.querySelector('.hero-vid');
 
 
 let slidePos = 0;
@@ -73,3 +74,7 @@ function pausePagi() {
 function resumePagi() {
     pagination[activeSlide].style.animationPlayState = "running";
 }
+
+heroVid.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+})
