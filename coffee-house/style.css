@@ -98,6 +98,7 @@ header > a > img:hover {
     max-width: 1360px;
     padding: 100px;
     margin-bottom: 100px;
+    position: relative;
 }
 
 .text-accent {
@@ -113,6 +114,7 @@ header > a > img:hover {
     align-items: flex-start;
     gap: 40px;
     height: 444px;
+    z-index: 1;
 }
 
 .hero-description > a {
@@ -168,6 +170,17 @@ header > a > img:hover {
 
 .hero-button:hover img {
     display: inline;
+}
+
+.hero-vid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    border-radius: 40px;
 }
 
 .favorite-section {
