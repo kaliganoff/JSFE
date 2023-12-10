@@ -189,6 +189,7 @@ header > a > img:hover {
 }
 
 .menu-item > img {
+    width: 310px;
     border-radius: 40px;
     border: 1px solid var(--border-light, #C1B6AD);
     margin-bottom: 20px;
@@ -324,10 +325,6 @@ a {
 @media screen and (max-width: 1426px) {
     .menu-wrapper {
         grid-template: 1fr 1fr / 1fr 1fr;
-    }
-
-    .hide-tablet {
-        display: none;
     }
 
     .menu-item {
