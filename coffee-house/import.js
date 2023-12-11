@@ -114,6 +114,11 @@ function openModal() {
     modalDescription.innerHTML = products[this.dataset.id].description;
     price = +products[this.dataset.id].price;
     modalPrice.innerHTML = '$' + price;
+    if (!modalPrice.innerHTML.includes('.')) {
+        modalPrice.innerHTML += '.00';
+    } else if (modalPrice.innerHTML.includes('.5')) {
+        modalPrice.innerHTML += '0';
+    }
     modalPrice.dataset.price = price;
 };
 
@@ -131,6 +136,11 @@ function closeModal() {
 
 sizes.forEach(button => button.addEventListener('click', () => {
     modalPrice.innerHTML = '$' + String(+modalPrice.dataset.price + +button.dataset.add);
+    if (!modalPrice.innerHTML.includes('.')) {
+        modalPrice.innerHTML += '.00';
+    } else if (modalPrice.innerHTML.includes('.5')) {
+        modalPrice.innerHTML += '0';
+    }
     price = +modalPrice.dataset.price + +button.dataset.add;
     for (let i = 0; i <= 2; i++) {
         if(sizes[i].classList.contains('modal-active')) {
@@ -152,6 +162,11 @@ additives.forEach(button => button.addEventListener('click', () => {
     }
     price += 0.5 * count;
     modalPrice.innerHTML = '$' + String(price);
+    if (!modalPrice.innerHTML.includes('.')) {
+        modalPrice.innerHTML += '.00';
+    } else if (modalPrice.innerHTML.includes('.5')) {
+        modalPrice.innerHTML += '0';
+    }
     price = Number(modalPrice.dataset.price);
     if (priceAfterSize) {
         price = priceAfterSize;
