@@ -155,6 +155,10 @@ header > a > img:hover {
     color: var(--text-light, #E1D4C9);
 }
 
+.modal-active span {
+    background: var(--background-body, #E1D4C9) !important;
+}
+
 .button-emoji {
     padding: 3px 7px;
     width: 30px;
@@ -383,6 +387,7 @@ a {
     height: 30px;
     width: 30px;
     color: var(--text-dark, #403F3D);
+    transition: 1s;
 }
 
 .modal button {
@@ -395,6 +400,20 @@ a {
     font-weight: 600;
     font-size: 16px;
     background: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+.modal button:hover {
+    background: var(--background-container, #665F55) !important;
+    color: var(--text-light, #E1D4C9);
+    cursor: pointer;
+}
+
+.modal button:hover > span {
+    background: var(--background-body, #E1D4C9) !important;
+}
+
 }
 
 .modal-description {
@@ -416,6 +435,7 @@ a {
 
 .sizes button, .additives button {
     padding: 8px 16px 8px 8px;
+    transition: 1s;
 }
 
 .bold {
@@ -433,6 +453,7 @@ a {
 .info {
     font-size: 10px;
     line-height: 140%;
+    margin-bottom: 0px;
 }
 
 .close-button {
@@ -450,6 +471,7 @@ a {
 
 .total-price {
     justify-content: space-between;
+    margin-bottom: 16px;
 }
 
 @media screen and (max-width: 1426px) {
@@ -470,6 +492,40 @@ a {
 
     .contacts {
         margin-top: 2px;
+    }
+}
+
+@media screen and (max-width: 823px) {
+    .modal {
+        width: 688px;
+        height: auto;
+    }
+
+    .modal-text {
+        width: 326px;
+    }
+
+    .modal-description {
+        width: 100%;
+    }
+
+    .sizes {
+        width: 326px;
+        margin-bottom: 15px;
+    }
+
+    .additives {
+        width: 326px;
+        margin-bottom: 17px;
+    }
+
+    .close-button {
+        width: 100%;
+        height: 44px;
+    }
+
+    .total-price {
+        margin-bottom: 20px;
     }
 }
 
@@ -607,30 +663,6 @@ a {
         margin-top: 2px;
     }
 
-    .modal {
-        width: 688px;
-        height: auto;
-    }
-
-    .modal-text {
-        width: 326px;
-    }
-
-    .modal-description {
-        width: 100%;
-    }
-
-    .sizes {
-        width: 326px;
-    }
-
-    .additives {
-        width: 326px;
-    }
-
-    .close-button {
-        width: 100%;
-    }
 }
 
 @media screen and (max-width: 683px) {
@@ -709,5 +741,17 @@ a {
 
     .modal-img {
         display: none;
+    }
+
+    .modal-price {
+        margin-right: 15px;
+    }
+
+    .sizes {
+        margin-bottom: 15px;
+    }
+
+    .close-button {
+        width: 310px;
     }
 }
