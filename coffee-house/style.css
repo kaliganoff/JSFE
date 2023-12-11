@@ -67,7 +67,6 @@ header > a > img:hover {
     transition: 1s;
 }
 
-
 .button-link {
     color: var(--text-dark, #403F3D);
     display: flex;
@@ -99,6 +98,7 @@ header > a > img:hover {
     max-width: 1360px;
     padding: 100px;
     margin-bottom: 100px;
+    position: relative;
 }
 
 .text-accent {
@@ -114,6 +114,7 @@ header > a > img:hover {
     align-items: flex-start;
     gap: 40px;
     height: 444px;
+    z-index: 1;
 }
 
 .hero-description > a {
@@ -171,6 +172,17 @@ header > a > img:hover {
     display: inline;
 }
 
+.hero-vid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    border-radius: 40px;
+}
+
 .favorite-section {
     margin-bottom: 100px;
 }
@@ -185,6 +197,22 @@ header > a > img:hover {
 
 .choose {
     margin-bottom: 40px;
+}
+
+.slider-wrapper {
+    display: flex;
+    overflow: hidden;
+    width: 480px;
+}
+
+.slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    left: 0px;
+    transition: 1s;
 }
 
 .slide-img {
@@ -252,13 +280,6 @@ header > a > img:hover {
 
 }
 
-.slide {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 480px;
-}
-
 .pagination-wrapper {
     display: flex;
     gap: 12px;
@@ -275,6 +296,19 @@ header > a > img:hover {
 
 .active-pagi {
     background: var(--border-dark, #665F55);
+    width: 0%;
+    height: 4px;
+    animation: pagi-anima;
+    animation-duration: 5s;
+}
+
+@keyframes pagi-anima {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
 }
 
 .about-wrapper {
@@ -513,7 +547,11 @@ a {
 }
 
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 768px) {
+    header > a {
+        z-index: 3;
+    }
+
     .nav-list {
         display: none;
     }
@@ -528,16 +566,83 @@ a {
         gap: 5px;
         border-radius: 100px;
         border: 1px solid var(--border-dark, #665F55);
+        z-index: 3;
     }
 
     .bun {
         width: 16px;
         height: 1px;
         background-color: var(--text-dark, #403F3D);
+        transition: .5s;
+    }
+
+    .burger-active .bun:first-child {
+        transform: rotate(+45deg) translate(1px, 2px);
+    }
+
+    .burger-active .bun:last-child {
+        transform: rotate(-45deg) translate(2px, -3px);
     }
 
     .menu-button {
         display: none;
+    }
+
+    .burger-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 100%;
+        width: 100%;
+        height: 100%;
+        background-color: var(--background-body, #E1D4C9);
+        z-index: 2;
+        gap: 93px;
+        font-size: 32px;
+        transition: 1s;
+    }
+
+    .menu-active {
+        left: 0;
+    }
+
+    .burger-nav-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        list-style: none;
+        gap: 75px;
+        padding-left: 0;
+        width: 100%;
+        margin-top: 165px;
+    }
+
+    .burger-nav-list a {
+        text-decoration: none;
+        color: var(--text-dark, #403F3D);
+        transition: 1s;
+    }
+
+    .burger-menu-button {
+        background: var(--background-body, #E1D4C9);
+        border: 0px solid #E1D4C9;
+        font-weight: 600;
+        height: 40px;
+        transition: 1s;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .burger-menu-button img {
+        width: 40px;
+    }
+
+
+    .button-link {
+        gap: 16px;
     }
 
     .hero-section {
@@ -760,7 +865,7 @@ a {
         justify-content: space-between;
     }
 
-    .slide {
+    .slider-wrapper {
         width: 348px;
     }
 
@@ -831,7 +936,5 @@ a {
     .hero-button img {
         display: inline;
     }
-
-
 }
 
