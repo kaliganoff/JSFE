@@ -39,9 +39,9 @@ rightArrow.addEventListener('click', slideRight);
 function slideLeft() {
     slWidth = sliderWrapper.clientWidth;
     pagination[activeSlide].classList.toggle('active-pagi')
-    slidePos += 480;
-    if (slidePos > 0) slidePos = -960;
-    activeSlide = -slidePos / 480;
+    slidePos += slWidth;
+    if (slidePos > 0) slidePos = -(slWidth * 2);
+    activeSlide = -slidePos / slWidth;
     slide.forEach(slide => slide.style.left = slidePos + 'px');
     pagination[activeSlide].classList.toggle('active-pagi')
 }
@@ -66,6 +66,26 @@ slide.forEach(slide => slide.addEventListener('mouseover', pausePagi));
 
 slide.forEach(slide => slide.addEventListener('mouseout', resumePagi));
 
+let x1, x2, y1, y2;
+
+slide.forEach(slide => slide.addEventListener('touchstart', (e) => {
+    x1 = e.touches[0].clientX;
+    pausePagi();
+}));
+
+slide.forEach(slide => slide.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    resumePagi();
+    if (x2 - x1 > 0) {
+        slideLeft();
+    } else if (x2 - x1 < 0) {
+        slideRight();
+    }
+}));
+
+slide.forEach(slide => slide.addEventListener('touchmove', (e) => {
+    x2 = e.touches[0].clientX;
+}));
 
 function pausePagi() {
     pagination[activeSlide].style.animationPlayState = "paused";
