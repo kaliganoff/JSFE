@@ -636,6 +636,11 @@ a {
         justify-content: center;
     }
 
+    .burger-menu-button img {
+        width: 40px;
+    }
+
+
     .button-link {
         gap: 16px;
     }
@@ -931,7 +936,5 @@ a {
     .hero-button img {
         display: inline;
     }
-
-
 }
 
