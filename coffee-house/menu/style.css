@@ -556,6 +556,7 @@ a {
         width: 16px;
         height: 1px;
         background-color: var(--text-dark, #403F3D);
+        transition: .5s;
     }
 
     .burger-active .bun:first-child {
