@@ -13,6 +13,7 @@ const dictionary = {
 };
 const entries = Object.keys(dictionary);
 let word = entries[Math.floor(Math.random() * 10)];
+let prevWord = '';
 let mistakes = 0;
 
 const gallows = document.createElement('img');
@@ -69,12 +70,13 @@ for (letter of alphabet) {
     document.body.append(button);
 }
 
-const spans = document.querySelectorAll('span');
+let spans = document.querySelectorAll('span');
 
 const modal = document.createElement('div');
 modal.className = 'modal';
 const playAgain = document.createElement('button');
 playAgain.innerText = 'Play Again!'
+playAgain.addEventListener('click', restartGame);
 
 function guess() {
     if (word.includes(this.innerHTML)) {
@@ -91,6 +93,7 @@ function guess() {
         incorrectGuesses.innerHTML = `Incorrect guesses: ${mistakes}`
         if (mistakes === 6) {
           modal.innerText = `You lose!\nThe secret word: ${word}\n`;
+          prevWord = word;
           document.body.append(modal);
           modal.append(playAgain);
         }
@@ -103,6 +106,7 @@ for (span of spans) {
 };
 if (result === word) {
     modal.innerText = `You Win!\nThe secret word: ${word}\n`;
+    prevWord = word;
     document.body.append(modal);
     modal.append(playAgain);
 }
@@ -111,3 +115,30 @@ if (result === word) {
 document.addEventListener('keypress', (e) => {
     document.querySelector(`[data-letter = '${e.key}'`).click();
 })
+
+const buttons = document.querySelectorAll('[data-letter]');
+
+function restartGame() {
+    word = entries[Math.floor(Math.random() * 10)];
+    if (word === prevWord) restartGame();
+    question.innerHTML = dictionary[word];
+    mistakes = 0;
+    for (part of bodyParts) {
+        part.classList.remove('active');
+    };
+    incorrectGuesses.innerHTML = `Incorrect guesses: ${mistakes}`;
+    for (button of buttons) {
+        button.disabled = false;
+    }
+    for (span of spans) {
+        span.remove();
+    }
+    for (letter of word) {
+        let underscore = document.createElement('span');
+        underscore.innerHTML = '_';
+        underscore.style.marginRight = '10px';
+        incorrectGuesses.before(underscore);
+    }
+    spans = document.querySelectorAll('span');
+    modal.remove();
+}
