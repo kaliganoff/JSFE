@@ -3,37 +3,47 @@
 }
 
 .head {
+    display: none;
     position: absolute;
     left: 260px;
     top: 160px;
 }
 
 .body {
+    display: none;
     position: absolute;
     left: 310px;
     top: 260px;
 }
 
 .left-arm {
+    display: none;
     position: absolute;
     left: 248px;
     top: 260px;
 }
 
 .right-arm {
+    display: none;
     position: absolute;
     left: 310px;
     top: 260px;
 }
 
 .left-leg {
+    display: none;
     position: absolute;
     left: 248px;
     top: 385px;
 }
 
 .right-leg {
+    display: none;
     position: absolute;
     left: 310px;
     top: 385px;
+}
+
+.active {
+    display: inline;
 }

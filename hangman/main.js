@@ -35,6 +35,7 @@ document.body.append(leftArm);
 document.body.append(rightArm);
 document.body.append(leftLeg);
 document.body.append(rightLeg);
+const bodyParts = [head, body, leftArm, rightArm, leftLeg, rightLeg];
 
 for (letter of word) {
     let underscore = document.createElement('span');
@@ -66,9 +67,11 @@ function guess() {
         };
         this.disabled = true;
     } else {
+        if (mistakes < 6) {
+        bodyParts[mistakes].classList.add('active');
         mistakes++;
-        if (mistakes > 6) {
-            alert('You lose!');
-        }
+    } else {
+        alert('You lose!');
     };
+}
 }
