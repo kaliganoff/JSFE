@@ -1,0 +1,39 @@
+.gallows {
+    position: relative;
+}
+
+.head {
+    position: absolute;
+    left: 260px;
+    top: 160px;
+}
+
+.body {
+    position: absolute;
+    left: 310px;
+    top: 260px;
+}
+
+.left-arm {
+    position: absolute;
+    left: 248px;
+    top: 260px;
+}
+
+.right-arm {
+    position: absolute;
+    left: 310px;
+    top: 260px;
+}
+
+.left-leg {
+    position: absolute;
+    left: 248px;
+    top: 385px;
+}
+
+.right-leg {
+    position: absolute;
+    left: 310px;
+    top: 385px;
+}
