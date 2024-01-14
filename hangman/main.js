@@ -44,7 +44,7 @@ for (letter of word) {
     document.body.append(underscore);
 }
 
-const incorrectGuesses = document.createElement('span');
+const incorrectGuesses = document.createElement('p');
 incorrectGuesses.innerHTML = 'Incorrect guesses: 0';
 document.body.append(incorrectGuesses);
 
@@ -69,7 +69,6 @@ function guess() {
         for (item of characters) {
             spans[item].innerHTML = this.innerHTML;
         };
-        this.disabled = true;
     } else {
         if (mistakes < 6) {
         bodyParts[mistakes].classList.add('active');
@@ -79,5 +78,13 @@ function guess() {
           alert('You lose!');
         }
     };
+}
+this.disabled = true;
+let result = '';
+for (span of spans) {
+    result += span.innerHTML;
+};
+if (result === word) {
+    alert('You win!');
 }
 }
