@@ -44,6 +44,10 @@ for (letter of word) {
     document.body.append(underscore);
 }
 
+const incorrectGuesses = document.createElement('span');
+incorrectGuesses.innerHTML = 'Incorrect guesses: 0';
+document.body.append(incorrectGuesses);
+
 const question = document.createElement('p');
 question.innerHTML = dictionary[word];
 document.body.append(question);
@@ -70,8 +74,10 @@ function guess() {
         if (mistakes < 6) {
         bodyParts[mistakes].classList.add('active');
         mistakes++;
-    } else {
-        alert('You lose!');
+        incorrectGuesses.innerHTML = `Incorrect guesses: ${mistakes}`
+        if (mistakes === 6) {
+          alert('You lose!');
+        }
     };
 }
 }
