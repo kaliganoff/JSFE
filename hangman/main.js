@@ -65,10 +65,16 @@ for (letter of alphabet) {
     let button = document.createElement('button');
     button.innerHTML = letter;
     button.addEventListener('click', guess);
+    button.dataset.letter = letter;
     document.body.append(button);
 }
 
 const spans = document.querySelectorAll('span');
+
+const modal = document.createElement('div');
+modal.className = 'modal';
+const playAgain = document.createElement('button');
+playAgain.innerText = 'Play Again!'
 
 function guess() {
     if (word.includes(this.innerHTML)) {
@@ -84,7 +90,9 @@ function guess() {
         mistakes++;
         incorrectGuesses.innerHTML = `Incorrect guesses: ${mistakes}`
         if (mistakes === 6) {
-          alert('You lose!');
+          modal.innerText = `You lose!\nThe secret word: ${word}\n`;
+          document.body.append(modal);
+          modal.append(playAgain);
         }
     };
 }
@@ -94,6 +102,12 @@ for (span of spans) {
     result += span.innerHTML;
 };
 if (result === word) {
-    alert('You win!');
+    modal.innerText = `You Win!\nThe secret word: ${word}\n`;
+    document.body.append(modal);
+    modal.append(playAgain);
 }
 }
+
+document.addEventListener('keypress', (e) => {
+    document.querySelector(`[data-letter = '${e.key}'`).click();
+})
