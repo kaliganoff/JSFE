@@ -1,9 +1,18 @@
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 const dictionary = {
     'pelican': 'a large bird that catches fish and carries them in the lower part of its large, bag-shaped beak',
+    'kangaroo': 'a large Australian mammal with a long stiff tail, short front legs and long powerful back legs',
+    'zebra': 'an African wild animal that looks like a horse, with black or brown and white lines on its body',
+    'whale': 'a very large sea mammal that breathes air through a hole at the top of its head',
+    'walrus': 'a sea mammal, similar to a seal but larger and with two very long teeth that stick out from the mouth',
+    'amoeba': 'a very small, simple organism consisting of only one cell',
+    'elephant': 'a very large grey mammal that has a trunk with which it can pick things up',
+    'pigeon': 'a large, usually grey bird that is often seen in towns sitting on buildings in large groups',
+    'anaconda': 'a large South American snake that curls around a live animal and crushes it to kill it for food',
+    'butterfly': 'a type of insect with large, often brightly coloured wings',
 };
 const entries = Object.keys(dictionary);
-let word = entries[0];
+let word = entries[Math.floor(Math.random() * 10)];
 let mistakes = 0;
 
 const gallows = document.createElement('img');
