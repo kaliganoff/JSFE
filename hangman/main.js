@@ -73,7 +73,9 @@ for (letter of alphabet) {
 let spans = document.querySelectorAll('span');
 
 const modal = document.createElement('div');
+const overlay = document.createElement('div');
 modal.className = 'modal';
+overlay.className = 'overlay';
 const playAgain = document.createElement('button');
 playAgain.innerText = 'Play Again!'
 playAgain.addEventListener('click', restartGame);
@@ -94,6 +96,7 @@ function guess() {
         if (mistakes === 6) {
           modal.innerText = `You lose!\nThe secret word: ${word}\n`;
           prevWord = word;
+          document.body.append(overlay);
           document.body.append(modal);
           modal.append(playAgain);
         }
@@ -107,6 +110,7 @@ for (span of spans) {
 if (result === word) {
     modal.innerText = `You Win!\nThe secret word: ${word}\n`;
     prevWord = word;
+    document.body.append(overlay);
     document.body.append(modal);
     modal.append(playAgain);
 }
@@ -140,5 +144,6 @@ function restartGame() {
         incorrectGuesses.before(underscore);
     }
     spans = document.querySelectorAll('span');
+    overlay.remove();
     modal.remove();
 }

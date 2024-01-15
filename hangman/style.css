@@ -58,10 +58,30 @@ body {
     top: 50%;
     transform: translate(-50%, -50%);
     border: 10px black solid;
+    z-index: 2;
+    background-color: white;
 }
 
 button {
     font-size: 30px;
     background-color: aliceblue;
     margin-right: 5px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: rgb(112, 156, 194);
+    transition: 1s;
+}
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 50%;
+    z-index: 1;
 }
