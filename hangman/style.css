@@ -1,0 +1,87 @@
+body {
+    font-size: 30px;
+}
+
+.gallows {
+    position: relative;
+}
+
+.head {
+    display: none;
+    position: absolute;
+    left: 260px;
+    top: 160px;
+}
+
+.body {
+    display: none;
+    position: absolute;
+    left: 310px;
+    top: 260px;
+}
+
+.left-arm {
+    display: none;
+    position: absolute;
+    left: 248px;
+    top: 260px;
+}
+
+.right-arm {
+    display: none;
+    position: absolute;
+    left: 310px;
+    top: 260px;
+}
+
+.left-leg {
+    display: none;
+    position: absolute;
+    left: 248px;
+    top: 385px;
+}
+
+.right-leg {
+    display: none;
+    position: absolute;
+    left: 310px;
+    top: 385px;
+}
+
+.active {
+    display: inline;
+}
+
+.modal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 10px black solid;
+    z-index: 2;
+    background-color: white;
+}
+
+button {
+    font-size: 30px;
+    background-color: aliceblue;
+    margin-right: 5px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: rgb(112, 156, 194);
+    transition: 1s;
+}
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 50%;
+    z-index: 1;
+}
