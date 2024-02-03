@@ -1,9 +1,23 @@
-body {
+.game {
+    width: 50vw;
     display: grid;
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto;
     grid-template-rows: auto auto auto auto auto;
 }
 
 button {
-    height: 20px;
+    aspect-ratio: 1;
 }
+
+.active {
+    background-color: black;
+}
+
+[data-clue="horizontal"] {
+    border-bottom: 5px solid black;
+}
+
+[data-clue="vertical"] {
+    border-right: 5px solid black;
+}
+
