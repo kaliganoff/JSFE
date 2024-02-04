@@ -2,6 +2,10 @@ body {
     display: flex;
 }
 
+select {
+    height: 20px;
+}
+
 .game {
     width: 50vw;
     display: grid;
