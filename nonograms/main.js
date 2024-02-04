@@ -41,10 +41,16 @@ for (let i = 0; i < 6; i++) {
         let box = document.createElement('button');
         box.dataset.x = i - 1;
         box.dataset.y = j - 1 ;
-        box.addEventListener('click', solving)
+        box.addEventListener('click', solving);
+        box.addEventListener('contextmenu', crossing);
         game.append(box);
     }
 }
+
+const restartButton = document.createElement('button');
+restartButton.innerText = 'Reset game';
+restartButton.addEventListener('click', restart);
+document.body.append(restartButton);
 
 const horizontalClues = document.querySelectorAll('[data-clue="horizontal"]');
 const verticalClues = document.querySelectorAll('[data-clue="vertical"]');
@@ -59,15 +65,49 @@ verticalClues[2].innerText = '3';
 verticalClues[3].innerText = '5';
 verticalClues[4].innerText = '1 1';
 
-
-
-
+let firstClick;
+let gameDuration = 0;
 
 function solving() {
+    if (!firstClick) {
+        firstClick = !firstClick;
+        console.time(gameDuration);
+    }
+    console.timeLog(gameDuration);
     solution[this.dataset.x][this.dataset.y] = !solution[this.dataset.x][this.dataset.y];
     console.log(JSON.stringify(nonogram) === JSON.stringify(solution));
     if (JSON.stringify(nonogram) === JSON.stringify(solution)) {
+        console.timeEnd(gameDuration);
         alert('Great! You have solved the nonogram!');
     }
+    this.classList.remove('cross');
     this.classList.toggle('active');
+}
+
+function crossing(e) {
+    e.preventDefault();
+    if (!firstClick) {
+        firstClick = !firstClick;
+        console.time(gameDuration);
+    }
+    if (this.classList.contains('active')) {
+        this.classList.remove('active');
+        solution[this.dataset.x][this.dataset.y] = !solution[this.dataset.x][this.dataset.y];
+    }
+    this.classList.toggle('cross');
+}
+
+function restart() {
+    firstClick = false;
+    console.timeEnd(gameDuration);
+    const buttons = document.querySelectorAll('[data-x]');
+    buttons.forEach((button) => {
+        button.classList.remove('active');
+        button.classList.remove('cross');
+    })
+    for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 5; j++) {
+            solution[i][j] = false;
+        }
+    };
 }

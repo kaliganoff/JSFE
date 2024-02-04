@@ -1,3 +1,7 @@
+body {
+    display: flex;
+}
+
 .game {
     width: 50vw;
     display: grid;
@@ -11,6 +15,12 @@ button {
 
 .active {
     background-color: black;
+}
+
+.cross {
+    background-image: url(assets/cross.png);
+    background-position: center;
+    background-size: contain;
 }
 
 [data-clue="horizontal"] {
