@@ -111,6 +111,16 @@ const gameDuration = document.createElement('p');
 gameDuration.textContent = '00:00';
 document.body.append(gameDuration);
 
+const saveButton = document.createElement('button');
+saveButton.textContent = 'Save Game';
+saveButton.addEventListener('click', saveGame);
+document.body.append(saveButton);
+
+const loadButton = document.createElement('button');
+loadButton.textContent = 'Load Game';
+loadButton.addEventListener('click', loadGame);
+document.body.append(loadButton);
+
 
 const horizontalClues = document.querySelectorAll('[data-clue="horizontal"]');
 const verticalClues = document.querySelectorAll('[data-clue="vertical"]');
@@ -128,6 +138,7 @@ verticalClues[4].innerText = '1 1';
 let firstClick;
 let startTime;
 let interval;
+let interval2
 let hasWon = false;
 
 function solving() {
@@ -139,14 +150,15 @@ function solving() {
         }, 1000);
     }
     solution[this.dataset.x][this.dataset.y] = !solution[this.dataset.x][this.dataset.y];
-    console.log(JSON.stringify(nonogram) === JSON.stringify(solution));
-    if (JSON.stringify(nonogram) === JSON.stringify(solution)) {
-        if (!hasWon) gameDuration.innerText += `\nGreat! You have solved the nonogram in ${Math.trunc((Date.now() - startTime) / 1000)} seconds!`;
-        clearInterval(interval);
-        hasWon = true;
-    }
     this.classList.remove('cross');
     this.classList.toggle('active');
+    if (JSON.stringify(nonogram) === JSON.stringify(solution)) {
+        setTimeout(() => {
+            if (!hasWon) alert(`\nGreat! You have solved the nonogram in ${Math.trunc((Date.now() - startTime) / 1000)} seconds!`);
+            clearInterval(interval);
+            hasWon = true;
+        }, 50);
+    }
 }
 
 function crossing(e) {
@@ -180,6 +192,7 @@ function restart() {
         }
     };
     clearInterval(interval);
+    clearInterval(interval2);
     gameDuration.textContent = '00:00';
 }
 
@@ -251,4 +264,94 @@ function formatTime(time) {
     //if (seconds < 10)
     //seconds = `0${seconds}`;
     return minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
+}
+
+function saveGame() {
+    if (!hasWon) {
+        localStorage.solution = JSON.stringify(solution);
+        localStorage.gameDuration = (Date.now() - startTime);
+        localStorage.selectedIndex = select.selectedIndex;
+    } else {
+        alert("You can't save now.");
+    }
+}
+
+function loadGame() {
+    solution = JSON.parse(localStorage.solution);
+    select.selectedIndex = localStorage.selectedIndex;
+    const buttons = document.querySelectorAll('[data-x]');
+    for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 5; j++) {
+            if (solution[i][j] === true) {
+                buttons[5 * i + j].classList.add('active');
+            } else {
+                buttons[5 * i + j].classList.remove('active');
+            }
+        }
+    }
+    let gameTime = localStorage.gameDuration;
+    startTime = Date.now() - gameTime;
+    clearInterval(interval);
+    clearInterval(interval2);
+    interval2 = setInterval(() => {
+        gameDuration.textContent = formatTime((Date.now() - startTime) / 1000);
+    }, 1000);
+    nonogram = levels[select.selectedIndex];
+    if (nonogram === tower) {
+        horizontalClues[0].innerText = '2';
+        horizontalClues[1].innerText = '4';
+        horizontalClues[2].innerText = '3\n1';
+        horizontalClues[3].innerText = '4'
+        horizontalClues[4].innerText = '2'
+        verticalClues[0].innerText = '1 1 1';
+        verticalClues[1].innerText = '5';
+        verticalClues[2].innerText = '3';
+        verticalClues[3].innerText = '1 1';
+        verticalClues[4].innerText = '3';
+    } else if (nonogram === turtle) {
+        horizontalClues[0].innerText = '2\n2';
+        horizontalClues[1].innerText = '3';
+        horizontalClues[2].innerText = '4';
+        horizontalClues[3].innerText = '3'
+        horizontalClues[4].innerText = '2\n2'
+        verticalClues[0].innerText = '1 1 1';
+        verticalClues[1].innerText = '5';
+        verticalClues[2].innerText = '3';
+        verticalClues[3].innerText = '5';
+        verticalClues[4].innerText = '1 1';   
+    } else if (nonogram === skull) {
+        horizontalClues[0].innerText = '3';
+        horizontalClues[1].innerText = '2\n2';
+        horizontalClues[2].innerText = '4';
+        horizontalClues[3].innerText = '2\n2'
+        horizontalClues[4].innerText = '3'
+        verticalClues[0].innerText = '3';
+        verticalClues[1].innerText = '5';
+        verticalClues[2].innerText = '1 1 1';
+        verticalClues[3].innerText = '5';
+        verticalClues[4].innerText = '1 1';   
+    } else if (nonogram === heart) {
+        horizontalClues[0].innerText = '2';
+        horizontalClues[1].innerText = '1\n1';
+        horizontalClues[2].innerText = '1\n1';
+        horizontalClues[3].innerText = '1\n1'
+        horizontalClues[4].innerText = '2'
+        verticalClues[0].innerText = '1 1';
+        verticalClues[1].innerText = '1 1 1';
+        verticalClues[2].innerText = '1 1';
+        verticalClues[3].innerText = '1 1';
+        verticalClues[4].innerText = '1';   
+    } else if (nonogram === ladder) {
+        horizontalClues[0].innerText = '2';
+        horizontalClues[1].innerText = '3';
+        horizontalClues[2].innerText = '2\n1';
+        horizontalClues[3].innerText = '2\n1'
+        horizontalClues[4].innerText = '5'
+        verticalClues[0].innerText = '2';
+        verticalClues[1].innerText = '3';
+        verticalClues[2].innerText = '2 1';
+        verticalClues[3].innerText = '2 1';
+        verticalClues[4].innerText = '5';   
+    };
+    hasWon = false;
 }
