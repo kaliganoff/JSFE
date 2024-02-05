@@ -17,8 +17,19 @@ button {
     aspect-ratio: 1;
 }
 
+.button {
+    height: 50px;
+    width: auto;
+    aspect-ratio: auto;
+    font-size: auto;
+}
+
 .active {
     background-color: black;
+}
+
+.active-dark {
+    background-color: white;
 }
 
 .cross {
@@ -27,11 +38,41 @@ button {
     background-size: contain;
 }
 
-[data-clue="horizontal"] {
+.cross-dark {
+    background-image: url(assets/cross-dark.png);
+    background-position: center;
+    background-size: contain;
+    background-color: black;
+}
+
+.horizontal {
     border-bottom: 5px solid black;
 }
 
-[data-clue="vertical"] {
+.vertical {
     border-right: 5px solid black;
+}
+
+.horizontal-dark {
+    border-bottom: 5px solid white;
+}
+
+.vertical-dark {
+    border-right: 5px solid white;
+}
+
+@media screen and (max-width: 950px) {
+    body {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button {
+        width: 50vw;
+    }
+
+    select {
+        width: 50vw;
+    }
 }
 
