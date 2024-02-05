@@ -57,6 +57,10 @@ const ladder = [
 const levels = [turtle, tower, skull, heart, ladder];
 
 let nonogram = turtle;
+let highScore = [];
+if (localStorage.highScore) {
+    highScore = JSON.parse(localStorage.highScore);
+}
 
 const fanfareAudio = document.createElement('audio');
 fanfareAudio.src = 'assets/fanfare.mp3';
@@ -197,7 +201,10 @@ function solving() {
         };
         setTimeout(() => {
             if (!hasWon) {
-                alert(`\nGreat! You have solved the nonogram in ${Math.trunc((Date.now() - startTime) / 1000)} seconds!`);
+                highScore.push(`${select.options[select.selectedIndex].textContent} - easy - ${gameDuration.textContent}`);
+                localStorage.highScore = JSON.stringify(highScore);
+                if (highScore.length > 5) highScore.shift();
+                alert(`\nGreat! You have solved the nonogram in ${Math.trunc((Date.now() - startTime) / 1000)} seconds!\n${highScore[0]}\n${highScore[1] ? highScore[1] : 'Second game'}\n${highScore[2] ? highScore[2] : 'Third game'}\n${highScore[3] ? highScore[3] : 'Fourth game'}\n${highScore[4] ? highScore[4] : 'Fifth game'}`);
             }
                 clearInterval(interval);
                 clearInterval(interval2);
