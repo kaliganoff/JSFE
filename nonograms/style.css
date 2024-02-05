@@ -1,0 +1,78 @@
+body {
+    display: flex;
+}
+
+select {
+    height: 20px;
+}
+
+.game {
+    width: 50vw;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto;
+}
+
+button {
+    aspect-ratio: 1;
+}
+
+.button {
+    height: 50px;
+    width: auto;
+    aspect-ratio: auto;
+    font-size: auto;
+}
+
+.active {
+    background-color: black;
+}
+
+.active-dark {
+    background-color: white;
+}
+
+.cross {
+    background-image: url(assets/cross.png);
+    background-position: center;
+    background-size: contain;
+}
+
+.cross-dark {
+    background-image: url(assets/cross-dark.png);
+    background-position: center;
+    background-size: contain;
+    background-color: black;
+}
+
+.horizontal {
+    border-bottom: 5px solid black;
+}
+
+.vertical {
+    border-right: 5px solid black;
+}
+
+.horizontal-dark {
+    border-bottom: 5px solid white;
+}
+
+.vertical-dark {
+    border-right: 5px solid white;
+}
+
+@media screen and (max-width: 950px) {
+    body {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button {
+        width: 50vw;
+    }
+
+    select {
+        width: 50vw;
+    }
+}
+
