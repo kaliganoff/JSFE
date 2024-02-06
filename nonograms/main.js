@@ -193,6 +193,7 @@ function solving() {
         }, 1000);
     }
     solution[this.dataset.x][this.dataset.y] = !solution[this.dataset.x][this.dataset.y];
+    solutionCrossing[this.dataset.x][this.dataset.y] = !solutionCrossing[this.dataset.x][this.dataset.y];
     this.classList.remove(crossClass);
     this.classList.toggle(activeClass);
     if (JSON.stringify(nonogram) === JSON.stringify(solution)) {
@@ -246,6 +247,7 @@ function restart() {
     for (let i = 0; i < 5; i++) {
         for (let j = 0; j < 5; j++) {
             solution[i][j] = false;
+            solutionCrossing[i][j] = false;
         }
     };
     clearInterval(interval);
