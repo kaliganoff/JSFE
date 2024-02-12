@@ -1,4 +1,4 @@
-[https://www.youtube.com/watch?v=jZqW1AiEalo](https://www.youtube.com/watch?v=jZqW1AiEalo)
+https://www.youtube.com/watch?v=jZqW1AiEalo
 
 My name is Nicholas, or Nikolai in Russian, and I'm a future junior Front-end developer.
 
