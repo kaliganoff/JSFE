@@ -1,5 +1,5 @@
 export interface NewsResponse {
-    status: string;
+    status: Status;
     totalResults: number;
     articles: Article[];
 }
@@ -20,7 +20,7 @@ export interface Article {
 
 export interface SourcesResponse {
     sources: Source[];
-    status: string;
+    status: Status;
 }
 
 export interface Source {
@@ -31,4 +31,9 @@ export interface Source {
     language: string;
     name: string;
     url: string;
+}
+
+enum Status {
+    ok,
+    error,
 }
