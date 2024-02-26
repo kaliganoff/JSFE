@@ -15,4 +15,11 @@ Here is a collection of badges I earned from completing Microsoft Learn's TypeSc
 
 ## Reflections
 
-[Add your personal reflections on what you learned in each module and how it contributes to your development skills]
+1. **Get started with TypeScript**: In this module I repeated what I already knew about what TypeScript is and how to install it.
+2.  **Declare variable types in TypeScript**: In this module I learned how and why to declare typed variables in TypeScript.
+3. **Implement interfaces in TypeScript**: In this module I learned what interfaces are and how to implement them in TypeScript.
+4. **Develop typed functions by using TypeScript**: In this module I learned about the benefits of using types in functions and how to write functions that have required, optional, default, and rest parameters.
+5. **Declare and instantiate classes in TypeScript**: In this module I repeated some info about classes and learned about their features that are specific to TypeScript: access modifiers, defining their shape and implementing interfaces.
+6. **Define generics in TypeScript**: In this module I learned how to use generic types which is a very powerful tool that gives you more freedom.
+7. **Access external libraries from TypeScript**: In this module I learned how to organize code with modules and how to import an external type library.
+8. **Organize code using TypeScript namespaces**: In this module I learned about namespaces and their use in TypeScript.  They can be use to lower the global scope pollution.
