@@ -33,6 +33,10 @@ export interface Source {
     url: string;
 }
 
+export interface LoaderOptions {
+    [key: string]: string | undefined;
+}
+
 enum Status {
     ok,
     error,

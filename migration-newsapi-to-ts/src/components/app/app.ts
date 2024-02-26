@@ -5,7 +5,7 @@ import { NewsResponse, SourcesResponse } from 'interfaces';
 class App {
     controller: AppController;
     view: AppView;
-    constructor() {
+    public constructor() {
         this.controller = new AppController();
         this.view = new AppView();
     }
@@ -13,10 +13,10 @@ class App {
     start(): void {
         document
             .querySelector('.sources')
-            ?.addEventListener('click', (e) =>
-                this.controller.getNews(e, (data: NewsResponse) => this.view.drawNews(data))
+            ?.addEventListener('click', (e: Event) =>
+                this.controller.getNews(e, (data: NewsResponse | undefined) => this.view.drawNews(data))
             );
-        this.controller.getSources((data: SourcesResponse) => this.view.drawSources(data));
+        this.controller.getSources((data: SourcesResponse | undefined) => this.view.drawSources(data));
     }
 }
 
