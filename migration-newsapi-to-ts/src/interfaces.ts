@@ -33,7 +33,7 @@ export interface Source {
     url: string;
 }
 
-enum Status {
+ enum Status {
     ok,
     error,
 }
