@@ -4,7 +4,13 @@ module.exports = {
     commonjs: true,
     es2021: true,
   },
-  extends: ["airbnb-base", "airbnb-typescript/base", "prettier"],
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb-base",
+    "airbnb-typescript/base",
+    "prettier",
+  ],
   overrides: [
     {
       env: {
