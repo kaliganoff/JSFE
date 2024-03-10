@@ -1,4 +1,5 @@
 const path = require("path");
+const EslintPlugin = require("eslint-webpack-plugin");
 
 module.exports = {
   devtool: "eval-source-map",
@@ -20,4 +21,5 @@ module.exports = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "public"),
   },
+  plugins: [new EslintPlugin({ extensions: "ts" })],
 };
