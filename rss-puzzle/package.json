@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "format": "prettier . --write",
     "ci:format": "prettier . --check",
     "serve": "webpack-dev-server",
