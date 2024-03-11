@@ -5,7 +5,7 @@ export default function drawLogInForm() {
   nameInput.id = "name";
   nameInput.required = true;
   const nameLabel: HTMLLabelElement = document.createElement("label");
-  nameLabel.innerText = "Name";
+  nameLabel.innerText = "First Name";
   nameLabel.htmlFor = "name";
   const surnameInput = document.createElement("input");
   surnameInput.id = "surname";
