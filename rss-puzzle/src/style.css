@@ -28,3 +28,8 @@ body {
   border-radius: 5px;
   border-color: burlywood;
 }
+
+.log-in-form-error {
+  color: red;
+  font-size: small;
+}
