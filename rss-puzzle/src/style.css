@@ -1,0 +1,30 @@
+body {
+  background-color: cornflowerblue;
+}
+
+.log-in-form {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  border: solid 2px burlywood;
+  gap: 5px;
+  padding: 10px;
+  font-size: larger;
+  background-color: antiquewhite;
+  border-radius: 7%;
+}
+
+.log-in-button {
+  background-color: white;
+  border-radius: 5px;
+  border-color: burlywood;
+}
+
+.log-in-input {
+  background-color: white;
+  border-radius: 5px;
+  border-color: burlywood;
+}
