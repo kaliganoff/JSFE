@@ -67,13 +67,20 @@ function validate() {
 
   if (validateName && validateSurname) {
     logInButton.disabled = false;
+    logInButton.classList.add("log-in-button_active");
   } else if (!validateName || !validateSurname) {
     logInButton.disabled = true;
+    logInButton.classList.remove("log-in-button_active");
   }
 }
 
 logInForm.addEventListener("submit", (e) => {
   e.preventDefault();
+  const user = {
+    name: nameInput.value,
+    surname: surnameInput.value,
+  };
+  localStorage.user = JSON.stringify(user);
 });
 
 logInForm.addEventListener("input", () => {
