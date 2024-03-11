@@ -23,6 +23,13 @@ body {
   border-color: burlywood;
 }
 
+.log-in-button_active:hover {
+  cursor: pointer;
+  border-radius: 7px;
+  background-color: beige;
+  transition: 1s;
+}
+
 .log-in-input {
   background-color: white;
   border-radius: 5px;
