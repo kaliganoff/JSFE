@@ -1,3 +1,5 @@
+import drawStartScreen from "./startScreen";
+
 const logInForm = document.createElement("form");
 logInForm.className = "log-in-form";
 const nameInput = document.createElement("input");
@@ -81,6 +83,8 @@ logInForm.addEventListener("submit", (e) => {
     surname: surnameInput.value,
   };
   localStorage.user = JSON.stringify(user);
+  logInForm.remove();
+  drawStartScreen();
 });
 
 logInForm.addEventListener("input", () => {

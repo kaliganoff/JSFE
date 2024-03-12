@@ -40,3 +40,16 @@ body {
   color: red;
   font-size: small;
 }
+
+.start-screen {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: larger;
+}
+
+.app-name {
+  font-size: xx-large;
+}
