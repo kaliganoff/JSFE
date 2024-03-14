@@ -64,3 +64,33 @@ body {
   cursor: pointer;
   background-color: burlywood;
 }
+
+.game-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.sentence-block {
+  display: flex;
+  gap: 5px;
+  height: 5rem;
+  width: auto;
+  border: 1px solid purple;
+}
+
+.word-block {
+  background-color: white;
+  height: max-content;
+  width: max-content;
+  padding: 1em;
+  border: 1px solid purple;
+}
+
+.word-block:hover {
+  cursor: pointer;
+}
