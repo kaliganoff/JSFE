@@ -53,3 +53,14 @@ body {
 .app-name {
   font-size: xx-large;
 }
+
+.start-button {
+  background-color: wheat;
+  border-radius: 10px;
+  font-size: x-large;
+}
+
+.start-button:hover {
+  cursor: pointer;
+  background-color: burlywood;
+}
