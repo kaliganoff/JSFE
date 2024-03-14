@@ -5,5 +5,5 @@ import drawStartScreen from "./startScreen";
 if (!localStorage.user) {
   drawLogInForm();
 } else {
-  drawStartScreen();
+  drawStartScreen(localStorage.user);
 }

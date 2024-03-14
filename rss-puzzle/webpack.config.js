@@ -26,4 +26,9 @@ module.exports = {
     path: path.resolve(__dirname, "public"),
   },
   plugins: [new EslintPlugin({ extensions: "ts" })],
+  devServer: {
+    client: {
+      overlay: false,
+    },
+  },
 };

@@ -84,7 +84,7 @@ logInForm.addEventListener("submit", (e) => {
   };
   localStorage.user = JSON.stringify(user);
   logInForm.remove();
-  drawStartScreen();
+  drawStartScreen(localStorage.user);
 });
 
 logInForm.addEventListener("input", () => {
