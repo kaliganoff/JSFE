@@ -73,6 +73,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2em;
+  width: 70%;
 }
 
 .sentence-block {
@@ -81,13 +82,14 @@ body {
   height: 5rem;
   width: auto;
   border: 1px solid purple;
+  align-items: center;
 }
 
 .word-block {
   background-color: white;
   height: max-content;
   width: max-content;
-  padding: 1em;
+  padding: 2%;
   border: 1px solid purple;
 }
 
