@@ -108,3 +108,9 @@ body {
 .continue {
   background-color: wheat;
 }
+
+.translation {
+  align-self: center;
+  font-style: italic;
+  margin-bottom: -10px;
+}

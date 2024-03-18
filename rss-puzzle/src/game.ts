@@ -14,6 +14,8 @@ const levels = [
   wordCollectionLevel6,
 ];
 
+const translation = document.createElement("p");
+translation.className = "translation";
 const roundAndSentence = document.createElement("p");
 const gameContainer = document.createElement("div");
 gameContainer.className = "game-container";
@@ -37,6 +39,10 @@ function initiateSentence() {
     levels[levelNumber].rounds[roundNumber].words[wordNumber].textExample;
   sentenceMixed = sentence.split(" ").sort(() => Math.random() - 0.5);
   roundAndSentence.textContent = `Level ${levelNumber + 1}, Round ${roundNumber + 1}, Sentence ${wordNumber + 1}`;
+  translation.textContent =
+    levels[levelNumber].rounds[roundNumber].words[
+      wordNumber
+    ].textExampleTranslate;
 }
 
 function formResult() {
@@ -121,10 +127,13 @@ function continueGame() {
   sourceBlock.innerHTML = "";
   fillSourceBlock();
   continueButton.disabled = true;
+  continueButton.innerText = "Check";
+  continueButton.classList.remove("continue");
 }
 
 export default function drawGame() {
   document.body.append(gameContainer);
+  gameContainer.append(translation);
   gameContainer.append(roundAndSentence);
   gameContainer.append(resultBlock);
   gameContainer.append(sourceBlock);
