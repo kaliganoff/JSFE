@@ -1,5 +1,20 @@
 import wordCollectionLevel1 from "./wordCollectionLevel1.json";
+import wordCollectionLevel2 from "./wordCollectionLevel2.json";
+import wordCollectionLevel3 from "./wordCollectionLevel3.json";
+import wordCollectionLevel4 from "./wordCollectionLevel4.json";
+import wordCollectionLevel5 from "./wordCollectionLevel5.json";
+import wordCollectionLevel6 from "./wordCollectionLevel6.json";
 
+const levels = [
+  wordCollectionLevel1,
+  wordCollectionLevel2,
+  wordCollectionLevel3,
+  wordCollectionLevel4,
+  wordCollectionLevel5,
+  wordCollectionLevel6,
+];
+
+const roundAndSentence = document.createElement("p");
 const gameContainer = document.createElement("div");
 gameContainer.className = "game-container";
 const resultBlock = document.createElement("div");
@@ -10,6 +25,7 @@ const continueButton = document.createElement("button");
 continueButton.innerText = "Continue";
 continueButton.disabled = true;
 
+let levelNumber = 0;
 let roundNumber = 0;
 let wordNumber = 0;
 let sentence = "";
@@ -17,8 +33,9 @@ let sentenceMixed: string[] = [];
 
 function initiateSentence() {
   sentence =
-    wordCollectionLevel1.rounds[roundNumber].words[wordNumber].textExample;
+    levels[levelNumber].rounds[roundNumber].words[wordNumber].textExample;
   sentenceMixed = sentence.split(" ").sort(() => Math.random() - 0.5);
+  roundAndSentence.textContent = `Level ${levelNumber + 1}, Round ${roundNumber + 1}, Sentence ${wordNumber + 1}`;
 }
 
 initiateSentence();
@@ -64,6 +81,11 @@ function continueGame() {
     roundNumber += 1;
     wordNumber = 0;
   }
+  if (roundNumber > levels[levelNumber].rounds.length) {
+    levelNumber += 1;
+    roundNumber = 0;
+    wordNumber = 0;
+  }
   initiateSentence();
   resultBlock.innerHTML = "";
   sourceBlock.innerHTML = "";
@@ -72,6 +94,7 @@ function continueGame() {
 
 export default function drawGame() {
   document.body.append(gameContainer);
+  gameContainer.append(roundAndSentence);
   gameContainer.append(resultBlock);
   gameContainer.append(sourceBlock);
 
