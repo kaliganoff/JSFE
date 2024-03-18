@@ -96,3 +96,15 @@ body {
 .word-block:hover {
   cursor: pointer;
 }
+
+.correct {
+  background-color: green;
+}
+
+.incorrect {
+  background-color: red;
+}
+
+.continue {
+  background-color: wheat;
+}

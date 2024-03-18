@@ -22,7 +22,7 @@ resultBlock.className = "sentence-block";
 const sourceBlock = document.createElement("div");
 sourceBlock.className = "sentence-block";
 const continueButton = document.createElement("button");
-continueButton.innerText = "Continue";
+continueButton.innerText = "Check";
 continueButton.disabled = true;
 
 let levelNumber = 0;
@@ -30,6 +30,7 @@ let roundNumber = 0;
 let wordNumber = 0;
 let sentence = "";
 let sentenceMixed: string[] = [];
+let sentenceIsRight = false;
 
 function initiateSentence() {
   sentence =
@@ -38,22 +39,51 @@ function initiateSentence() {
   roundAndSentence.textContent = `Level ${levelNumber + 1}, Round ${roundNumber + 1}, Sentence ${wordNumber + 1}`;
 }
 
-initiateSentence();
-
-function checkSentence() {
+function formResult() {
   const result: string[] = [];
   for (let i = 0; i < resultBlock.children.length; i += 1) {
     result.push(resultBlock.children[i].innerHTML);
   }
-  const sentenceIsRight = result.join(" ") === sentence;
+  return result;
+}
+
+initiateSentence();
+
+function checkSentence() {
+  const result = formResult();
+  sentenceIsRight = result.join(" ") === sentence;
   if (sentenceIsRight) {
     continueButton.disabled = false;
+    continueButton.innerText = "Continue";
+    continueButton.classList.add("continue");
+  } else if (result.length === sentence.split(" ").length) {
+    continueButton.disabled = false;
+    continueButton.classList.remove("continue");
   } else {
     continueButton.disabled = true;
+    continueButton.classList.remove("continue");
+  }
+}
+
+function checkIncorrectSentence() {
+  const result = formResult();
+  const sentenceArray = sentence.split(" ");
+  for (let i = 0; i < result.length; i += 1) {
+    if (result[i] === sentenceArray[i]) {
+      resultBlock.children[i].classList.add("correct");
+    } else {
+      resultBlock.children[i].classList.add("incorrect");
+    }
   }
 }
 
 function moveWord(wordBlock: HTMLParagraphElement) {
+  for (let i = 0; i < resultBlock.children.length; i += 1) {
+    resultBlock.children[i].classList.remove("correct", "incorrect");
+  }
+  for (let i = 0; i < sourceBlock.children.length; i += 1) {
+    sourceBlock.children[i].classList.remove("correct", "incorrect");
+  }
   if (wordBlock.parentElement === sourceBlock) {
     resultBlock.append(wordBlock);
     checkSentence();
@@ -90,6 +120,7 @@ function continueGame() {
   resultBlock.innerHTML = "";
   sourceBlock.innerHTML = "";
   fillSourceBlock();
+  continueButton.disabled = true;
 }
 
 export default function drawGame() {
@@ -102,6 +133,10 @@ export default function drawGame() {
 
   gameContainer.append(continueButton);
   continueButton.addEventListener("click", () => {
-    continueGame();
+    if (sentenceIsRight) {
+      continueGame();
+    } else {
+      checkIncorrectSentence();
+    }
   });
 }
