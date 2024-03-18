@@ -26,6 +26,8 @@ translationToggle.className = "active";
 const audioButton = document.createElement("button");
 audioButton.innerText = "Pronunciation";
 audioButton.className = "active";
+const levelSelect = document.createElement("select");
+const roundSelect = document.createElement("select");
 const listenButton = document.createElement("button");
 listenButton.innerText = "Listen";
 const translation = document.createElement("p");
@@ -158,6 +160,14 @@ function fillSourceBlock() {
   });
 }
 
+function fillRounds() {
+  for (let i = 1; i <= levels[levelNumber].rounds.length; i += 1) {
+    const option = document.createElement("option");
+    option.innerText = `Round${i}`;
+    roundSelect.append(option);
+  }
+}
+
 function continueGame() {
   wordNumber += 1;
   if (wordNumber > 9) {
@@ -187,6 +197,14 @@ function continueGame() {
 
 export default function drawGame() {
   document.body.append(headerContainer);
+  headerContainer.append(levelSelect);
+  for (let i = 1; i <= levels.length; i += 1) {
+    const option = document.createElement("option");
+    option.innerText = `Level${i}`;
+    levelSelect.append(option);
+  }
+  headerContainer.append(roundSelect);
+  fillRounds();
   headerContainer.append(audio);
   headerContainer.append(audioButton);
   headerContainer.append(translationToggle);
@@ -224,5 +242,25 @@ export default function drawGame() {
 
   audioButton.addEventListener("click", () => {
     toggleAudio();
+  });
+
+  levelSelect.addEventListener("change", () => {
+    levelNumber = levelSelect.selectedIndex;
+    roundNumber = 0;
+    roundSelect.selectedIndex = 0;
+    roundSelect.innerHTML = "";
+    fillRounds();
+    initiateSentence();
+    resultBlock.innerHTML = "";
+    sourceBlock.innerHTML = "";
+    fillSourceBlock();
+  });
+
+  roundSelect.addEventListener("change", () => {
+    roundNumber = roundSelect.selectedIndex;
+    initiateSentence();
+    resultBlock.innerHTML = "";
+    sourceBlock.innerHTML = "";
+    fillSourceBlock();
   });
 }
