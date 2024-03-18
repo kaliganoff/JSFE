@@ -12,6 +12,14 @@ button:hover {
   gap: 3px;
 }
 
+.hint-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: -10px;
+  gap: 5px;
+}
+
 .log-in-form {
   position: absolute;
   left: 50%;
@@ -121,9 +129,8 @@ button:hover {
 }
 
 .translation {
-  align-self: center;
+  justify-self: start;
   font-style: italic;
-  margin-bottom: -10px;
 }
 
 .hidden {

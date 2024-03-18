@@ -18,9 +18,16 @@ const headerContainer = document.createElement("div");
 headerContainer.className = "header";
 const logOutButton = document.createElement("button");
 logOutButton.innerText = "Logout";
+const hintContainer = document.createElement("div");
+hintContainer.className = "hint-container";
 const translationToggle = document.createElement("button");
 translationToggle.innerText = "Translation";
 translationToggle.className = "active";
+const audioButton = document.createElement("button");
+audioButton.innerText = "Pronunciation";
+audioButton.className = "active";
+const listenButton = document.createElement("button");
+listenButton.innerText = "Listen";
 const translation = document.createElement("p");
 translation.className = "translation";
 const roundAndSentence = document.createElement("p");
@@ -33,6 +40,15 @@ sourceBlock.className = "sentence-block";
 const continueButton = document.createElement("button");
 continueButton.innerText = "Check";
 continueButton.disabled = true;
+
+const audio = document.createElement("audio");
+audio.addEventListener("play", () => {
+  listenButton.classList.add("active");
+});
+
+audio.addEventListener("ended", () => {
+  listenButton.classList.remove("active");
+});
 
 let levelNumber = 0;
 let roundNumber = 0;
@@ -54,11 +70,17 @@ function initiateSentence() {
     levels[levelNumber].rounds[roundNumber].words[
       wordNumber
     ].textExampleTranslate;
+  audio.src = `https://github.com/rolling-scopes-school/rss-puzzle-data/blob/main/${levels[levelNumber].rounds[roundNumber].words[wordNumber].audioExample}?raw=true`;
 }
 
 function toggleTranslation() {
   translation.classList.toggle("hidden");
   translationToggle.classList.toggle("active");
+}
+
+function toggleAudio() {
+  listenButton.classList.toggle("hidden");
+  audioButton.classList.toggle("active");
 }
 
 function formResult() {
@@ -77,6 +99,7 @@ function checkSentence() {
   if (sentenceIsRight) {
     continueButton.disabled = false;
     translation.classList.remove("hidden");
+    listenButton.classList.remove("hidden");
     translationToggle.disabled = true;
     continueButton.innerText = "Continue";
     continueButton.classList.add("continue");
@@ -88,6 +111,9 @@ function checkSentence() {
     continueButton.classList.remove("continue");
     if (!translationToggle.classList.contains("active")) {
       translation.classList.add("hidden");
+    }
+    if (!audioButton.classList.contains("active")) {
+      listenButton.classList.add("hidden");
     }
   }
 }
@@ -154,14 +180,21 @@ function continueGame() {
   if (!translationToggle.classList.contains("active")) {
     translation.classList.add("hidden");
   }
+  if (!audioButton.classList.contains("active")) {
+    listenButton.classList.add("hidden");
+  }
 }
 
 export default function drawGame() {
   document.body.append(headerContainer);
+  headerContainer.append(audio);
+  headerContainer.append(audioButton);
   headerContainer.append(translationToggle);
   headerContainer.append(logOutButton);
   document.body.append(gameContainer);
-  gameContainer.append(translation);
+  gameContainer.append(hintContainer);
+  hintContainer.append(translation);
+  hintContainer.append(listenButton);
   gameContainer.append(roundAndSentence);
   gameContainer.append(resultBlock);
   gameContainer.append(sourceBlock);
@@ -183,5 +216,13 @@ export default function drawGame() {
 
   translationToggle.addEventListener("click", () => {
     toggleTranslation();
+  });
+
+  listenButton.addEventListener("click", () => {
+    audio.play();
+  });
+
+  audioButton.addEventListener("click", () => {
+    toggleAudio();
   });
 }
