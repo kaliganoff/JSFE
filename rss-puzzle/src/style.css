@@ -2,9 +2,14 @@ body {
   background-color: cornflowerblue;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 .header {
   display: flex;
   justify-content: right;
+  gap: 3px;
 }
 
 .log-in-form {
@@ -112,10 +117,21 @@ body {
 
 .continue {
   background-color: wheat;
+  border: 2px solid wheat;
 }
 
 .translation {
   align-self: center;
   font-style: italic;
   margin-bottom: -10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.active {
+  background-color: wheat;
+  border: 2px solid wheat;
+  border-radius: 5%;
 }

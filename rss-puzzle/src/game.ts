@@ -18,6 +18,9 @@ const headerContainer = document.createElement("div");
 headerContainer.className = "header";
 const logOutButton = document.createElement("button");
 logOutButton.innerText = "Logout";
+const translationToggle = document.createElement("button");
+translationToggle.innerText = "Translation";
+translationToggle.className = "active";
 const translation = document.createElement("p");
 translation.className = "translation";
 const roundAndSentence = document.createElement("p");
@@ -53,6 +56,11 @@ function initiateSentence() {
     ].textExampleTranslate;
 }
 
+function toggleTranslation() {
+  translation.classList.toggle("hidden");
+  translationToggle.classList.toggle("active");
+}
+
 function formResult() {
   const result: string[] = [];
   for (let i = 0; i < resultBlock.children.length; i += 1) {
@@ -68,6 +76,8 @@ function checkSentence() {
   sentenceIsRight = result.join(" ") === sentence;
   if (sentenceIsRight) {
     continueButton.disabled = false;
+    translation.classList.remove("hidden");
+    translationToggle.disabled = true;
     continueButton.innerText = "Continue";
     continueButton.classList.add("continue");
   } else if (result.length === sentence.split(" ").length) {
@@ -76,6 +86,9 @@ function checkSentence() {
   } else {
     continueButton.disabled = true;
     continueButton.classList.remove("continue");
+    if (!translationToggle.classList.contains("active")) {
+      translation.classList.add("hidden");
+    }
   }
 }
 
@@ -137,10 +150,15 @@ function continueGame() {
   continueButton.disabled = true;
   continueButton.innerText = "Check";
   continueButton.classList.remove("continue");
+  translationToggle.disabled = false;
+  if (!translationToggle.classList.contains("active")) {
+    translation.classList.add("hidden");
+  }
 }
 
 export default function drawGame() {
   document.body.append(headerContainer);
+  headerContainer.append(translationToggle);
   headerContainer.append(logOutButton);
   document.body.append(gameContainer);
   gameContainer.append(translation);
@@ -161,5 +179,9 @@ export default function drawGame() {
 
   logOutButton.addEventListener("click", () => {
     logOut();
+  });
+
+  translationToggle.addEventListener("click", () => {
+    toggleTranslation();
   });
 }
