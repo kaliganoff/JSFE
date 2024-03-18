@@ -14,6 +14,10 @@ const levels = [
   wordCollectionLevel6,
 ];
 
+const headerContainer = document.createElement("div");
+headerContainer.className = "header";
+const logOutButton = document.createElement("button");
+logOutButton.innerText = "Logout";
 const translation = document.createElement("p");
 translation.className = "translation";
 const roundAndSentence = document.createElement("p");
@@ -33,6 +37,10 @@ let wordNumber = 0;
 let sentence = "";
 let sentenceMixed: string[] = [];
 let sentenceIsRight = false;
+
+function logOut() {
+  delete localStorage.user;
+}
 
 function initiateSentence() {
   sentence =
@@ -132,6 +140,8 @@ function continueGame() {
 }
 
 export default function drawGame() {
+  document.body.append(headerContainer);
+  headerContainer.append(logOutButton);
   document.body.append(gameContainer);
   gameContainer.append(translation);
   gameContainer.append(roundAndSentence);
@@ -147,5 +157,9 @@ export default function drawGame() {
     } else {
       checkIncorrectSentence();
     }
+  });
+
+  logOutButton.addEventListener("click", () => {
+    logOut();
   });
 }
