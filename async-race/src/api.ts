@@ -1,8 +1,8 @@
-function getCars() {
-    fetch('http://localhost:3000/garage')
-      .then((response) => response.json())
-      .then(console.log);
-  }
+export async function getCars() {
+    let response = await fetch('http://localhost:3000/garage')
+    let result = await response.json();
+    return result;
+}
   
   function getCar(id: number) {
     fetch(`http://localhost:3000/garage/${id}`)
@@ -58,10 +58,10 @@ function getCars() {
       .then(console.log);
   }
   
-  function getWinners() {
-    fetch('http://localhost:3000/winners')
-      .then((response) => response.json())
-      .then(console.log);
+export async function getWinners() {
+      let response = await fetch('http://localhost:3000/winners')
+      let result = await response.json();
+      return result;
   }
   
   function getWinner(id: number) {

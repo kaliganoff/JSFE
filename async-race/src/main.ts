@@ -1,4 +1,5 @@
 import "./style.css";
+import * as API from './api'
 
 const viewDiv = document.createElement("div");
 const garageButton = document.createElement("button");
@@ -9,12 +10,20 @@ winnersButton.innerText = "TO WINNERS";
 const garageContainer = document.createElement("div");
 const garageHeader = document.createElement("p");
 garageHeader.innerText = "GARAGE";
+const numberOfCars = document.createElement("p");
+let getCarsResult: [] = await API.getCars();
+numberOfCars.innerText = `${getCarsResult.length}`;
 garageContainer.append(garageHeader);
+garageContainer.append(numberOfCars);
 
 const winnersContainer = document.createElement("div");
 const winnersHeader = document.createElement("p");
 winnersHeader.innerText = "WINNERS";
+const numberOfWinners = document.createElement("p");
+let getWinnersResult: [] = await API.getWinners();
+numberOfWinners.innerText = `${getWinnersResult.length}`;
 winnersContainer.append(winnersHeader);
+winnersContainer.append(numberOfWinners);
 winnersContainer.hidden = true;
 
 document.body.append(viewDiv);
