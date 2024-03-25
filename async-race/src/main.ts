@@ -8,13 +8,34 @@ garageButton.innerText = "TO GARAGE";
 winnersButton.innerText = "TO WINNERS";
 
 const garageContainer = document.createElement("div");
+
 const garageHeader = document.createElement("p");
 garageHeader.innerText = "GARAGE";
+
 const numberOfCars = document.createElement("p");
 let getCarsResult: [] = await API.getCars();
 numberOfCars.innerText = `${getCarsResult.length}`;
+
+const createCarForm = document.createElement('form');
+const nameInput = document.createElement("input");
+const colorInput = document.createElement('input');
+colorInput.type = 'color';
+const createCarButton = document.createElement("button");
+createCarButton.innerText = 'CREATE CAR';
+
+const updateCarForm = document.createElement('form');
+const updateNameInput = document.createElement("input");
+const updateColorInput = document.createElement('input');
+updateColorInput.type = 'color';
+const updateCarButton = document.createElement("button");
+updateCarButton.innerText = 'UPDATE CAR';
+
 garageContainer.append(garageHeader);
 garageContainer.append(numberOfCars);
+garageContainer.append(createCarForm);
+createCarForm.append(nameInput, colorInput, createCarButton);
+garageContainer.append(updateCarForm);
+updateCarForm.append(updateNameInput, updateColorInput, updateCarButton);
 
 const winnersContainer = document.createElement("div");
 const winnersHeader = document.createElement("p");
@@ -44,3 +65,11 @@ function openWinners() {
 
 garageButton.addEventListener("click", openGarage);
 winnersButton.addEventListener("click", openWinners);
+
+createCarForm.addEventListener('submit', () => {
+  API.createCar({
+  name: nameInput.value,
+  color: colorInput.value
+})
+}
+);

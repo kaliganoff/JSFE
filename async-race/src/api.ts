@@ -10,7 +10,7 @@ export async function getCars() {
       .then(console.log);
   }
   
-  function createCar(car) {
+ export async function createCar(car) {
     fetch('http://localhost:3000/garage', {
       method: 'POST',
       headers: {
