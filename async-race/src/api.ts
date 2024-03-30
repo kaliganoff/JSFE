@@ -4,13 +4,19 @@ export async function getCars() {
   return result;
 }
 
+export async function getCarsPagi(page: number) {
+  const response = await fetch(`http://localhost:3000/garage?_limit=7&_page=${page}`);
+  const result = await response.json();
+  return result;
+}
+
 /* function getCar(id: number) {
   fetch(`http://localhost:3000/garage/${id}`)
     .then((response) => response.json())
     .then(console.log);
 }
 */
-export async function createCar(car: { name: string, color: string}) {
+export function createCar(car: { name: string, color: string }) {
   fetch('http://localhost:3000/garage', {
     method: 'POST',
     headers: {
@@ -18,11 +24,10 @@ export async function createCar(car: { name: string, color: string}) {
     },
     body: JSON.stringify(car),
   })
-    .then((response) => response.json())
-    .then(console.log);
+    .then((response) => response.json());
 }
-/*
-function deleteCar(id: number) {
+
+export function deleteCar(id: number) {
   fetch(`http://localhost:3000/garage/${id}`, {
     method: 'DELETE',
   })
@@ -30,7 +35,7 @@ function deleteCar(id: number) {
     .then(console.log);
 }
 
-function updateCar(id: number, car) {
+export function updateCar(id: number, car) {
   fetch(`http://localhost:3000/garage/${id}`, {
     method: 'PUT',
     headers: {
@@ -38,8 +43,7 @@ function updateCar(id: number, car) {
     },
     body: JSON.stringify(car),
   })
-    .then((response) => response.json())
-    .then(console.log);
+    .then((response) => response.json());
 }
 
 function startStopEngine(id: number, status) {
@@ -56,7 +60,7 @@ function driveMode(id: number) {
   })
     .then((response) => response.json())
     .then(console.log);
-} */
+}
 
 export async function getWinners() {
   const response = await fetch('http://localhost:3000/winners');
@@ -64,7 +68,7 @@ export async function getWinners() {
   return result;
 }
 
-/* function getWinner(id: number) {
+function getWinner(id: number) {
   fetch(`http://localhost:3000/winners/${id}`)
     .then((response) => response.json())
     .then(console.log);
@@ -82,12 +86,11 @@ function createWinner(car) {
     .then(console.log);
 }
 
-function deleteWinner(id: number) {
+export function deleteWinner(id: number) {
   fetch(`http://localhost:3000/winners/${id}`, {
     method: 'DELETE',
   })
-    .then((response) => response.json())
-    .then(console.log);
+    .then((response) => response.json());
 }
 
 function updateWinner(id: number, car) {
@@ -100,4 +103,4 @@ function updateWinner(id: number, car) {
   })
     .then((response) => response.json())
     .then(console.log);
-} */
+}
