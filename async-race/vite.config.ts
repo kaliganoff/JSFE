@@ -1,6 +1,6 @@
 export default {
-    // config options
-build: {
-    target: 'esnext'
-  }
-}
+  // config options
+  build: {
+    target: "esnext",
+  },
+};

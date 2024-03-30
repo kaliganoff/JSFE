@@ -1,11 +1,13 @@
 export async function getCars() {
-  const response = await fetch('http://localhost:3000/garage');
+  const response = await fetch("http://localhost:3000/garage");
   const result = await response.json();
   return result;
 }
 
 export async function getCarsPagi(page: number) {
-  const response = await fetch(`http://localhost:3000/garage?_limit=7&_page=${page}`);
+  const response = await fetch(
+    `http://localhost:3000/garage?_limit=7&_page=${page}`,
+  );
   const result = await response.json();
   return result;
 }
@@ -16,20 +18,19 @@ export async function getCarsPagi(page: number) {
     .then(console.log);
 }
 */
-export function createCar(car: { name: string, color: string }) {
-  fetch('http://localhost:3000/garage', {
-    method: 'POST',
+export function createCar(car: { name: string; color: string }) {
+  fetch("http://localhost:3000/garage", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(car),
-  })
-    .then((response) => response.json());
+  }).then((response) => response.json());
 }
 
 export function deleteCar(id: number) {
   fetch(`http://localhost:3000/garage/${id}`, {
-    method: 'DELETE',
+    method: "DELETE",
   })
     .then((response) => response.json())
     .then(console.log);
@@ -37,18 +38,17 @@ export function deleteCar(id: number) {
 
 export function updateCar(id: number, car) {
   fetch(`http://localhost:3000/garage/${id}`, {
-    method: 'PUT',
+    method: "PUT",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(car),
-  })
-    .then((response) => response.json());
+  }).then((response) => response.json());
 }
 
 function startStopEngine(id: number, status) {
   fetch(`http://localhost:3000/engine?id=${id}&status=${status}`, {
-    method: 'PATCH',
+    method: "PATCH",
   })
     .then((response) => response.json())
     .then(console.log);
@@ -56,14 +56,14 @@ function startStopEngine(id: number, status) {
 
 function driveMode(id: number) {
   fetch(`http://localhost:3000/engine?id=${id}&status=drive`, {
-    method: 'PATCH',
+    method: "PATCH",
   })
     .then((response) => response.json())
     .then(console.log);
 }
 
 export async function getWinners() {
-  const response = await fetch('http://localhost:3000/winners');
+  const response = await fetch("http://localhost:3000/winners");
   const result = await response.json();
   return result;
 }
@@ -75,10 +75,10 @@ function getWinner(id: number) {
 }
 
 function createWinner(car) {
-  fetch('http://localhost:3000/winners', {
-    method: 'POST',
+  fetch("http://localhost:3000/winners", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(car),
   })
@@ -88,16 +88,15 @@ function createWinner(car) {
 
 export function deleteWinner(id: number) {
   fetch(`http://localhost:3000/winners/${id}`, {
-    method: 'DELETE',
-  })
-    .then((response) => response.json());
+    method: "DELETE",
+  }).then((response) => response.json());
 }
 
 function updateWinner(id: number, car) {
   fetch(`http://localhost:3000/winners/${id}`, {
-    method: 'PUT',
+    method: "PUT",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(car),
   })
