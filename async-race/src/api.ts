@@ -46,20 +46,20 @@ export function updateCar(id: number, car) {
   }).then((response) => response.json());
 }
 
-function startStopEngine(id: number, status) {
-  fetch(`http://localhost:3000/engine?id=${id}&status=${status}`, {
+export async function startStopEngine(id: number, status) {
+  const response = await fetch(`http://localhost:3000/engine?id=${id}&status=${status}`, {
     method: "PATCH",
-  })
-    .then((response) => response.json())
-    .then(console.log);
+  });
+  const result = await response.json();
+  return result;
 }
 
-function driveMode(id: number) {
-  fetch(`http://localhost:3000/engine?id=${id}&status=drive`, {
+export async function driveMode(id: number) {
+  const response = await fetch(`http://localhost:3000/engine?id=${id}&status=drive`, {
     method: "PATCH",
   })
-    .then((response) => response.json())
-    .then(console.log);
+  const result = await response.json();
+  return result;
 }
 
 export async function getWinners() {

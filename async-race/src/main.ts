@@ -114,6 +114,35 @@ for (let i = 0; i < Math.ceil(getCarsResult.length / 7); i += 1) {
           numberOfCars.innerText = `${Number(numberOfCars.innerText) - 1}`;
         });
         carContainer.append(removeButton);
+        const startEngineButton = document.createElement("button");
+        startEngineButton.innerText = 'Start Engine';
+        const stopEngineButton = document.createElement("button");
+        stopEngineButton.innerText = 'Stop Engine';
+        stopEngineButton.disabled = true;
+        carContainer.append(startEngineButton, stopEngineButton);
+        let animation: Animation;
+        startEngineButton.addEventListener('click', async () => {
+          let result = await API.startStopEngine(car.id, 'started');
+          console.log(Math.floor(result.distance / result.velocity));
+          animation = carIMG.animate({ transform: `translate(${window.innerWidth - 180}px, 0%)` }, { duration: Math.floor(result.distance / result.velocity), fill: "forwards"});
+          startEngineButton.disabled = true;
+          stopEngineButton.disabled = false;
+          animation.play();
+          try {
+          let driveResult = await API.driveMode(car.id);
+          console.log(driveResult);
+          } catch {
+           animation.pause();
+           throw new Error('The car has broken!');
+          }
+       });
+       stopEngineButton.addEventListener('click', async () => {
+        let result = await API.startStopEngine(car.id, 'stopped');
+        console.log(result);
+        stopEngineButton.disabled = true;
+        startEngineButton.disabled = false;
+        animation.cancel();
+      });
         pageContainer.append(carContainer);
       },
     );
@@ -159,6 +188,35 @@ getCarsPagiResult.forEach(
       numberOfCars.innerText = `${Number(numberOfCars.innerText) - 1}`;
     });
     carContainer.append(removeButton);
+    const startEngineButton = document.createElement("button");
+    startEngineButton.innerText = 'Start Engine';
+    const stopEngineButton = document.createElement("button");
+    stopEngineButton.innerText = 'Stop Engine';
+    stopEngineButton.disabled = true;
+    carContainer.append(startEngineButton, stopEngineButton);
+    let animation: Animation;
+    startEngineButton.addEventListener('click', async () => {
+       let result = await API.startStopEngine(car.id, 'started');
+       animation = carIMG.animate({ transform: `translate(${window.innerWidth - 180}px, 0%)` }, { duration: Math.floor(result.distance / result.velocity), fill: "forwards"});
+       console.log(Math.floor(result.distance / result.velocity));
+       startEngineButton.disabled = true;
+       stopEngineButton.disabled = false;
+       animation.play();
+       try {
+       let driveResult = await API.driveMode(car.id);
+       console.log(driveResult);
+       } catch {
+        animation.pause();
+        throw new Error('The car has broken!');
+       }
+    });
+    stopEngineButton.addEventListener('click', async () => {
+      let result = await API.startStopEngine(car.id, 'stopped');
+      console.log(result);
+      stopEngineButton.disabled = true;
+      startEngineButton.disabled = false;
+      animation.cancel();
+    });
     pageContainer.append(carContainer);
   },
 );
