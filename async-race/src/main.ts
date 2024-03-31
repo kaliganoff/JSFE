@@ -20,7 +20,7 @@ numberOfCars.innerText = `Number of cars: ${getCarsResult.length}`;
 
 
 let page = 1;
-const getCarsPagiResult: [] = await API.getCarsPagi(page);
+let getCarsPagiResult: [] = await API.getCarsPagi(page);
 
 const pageNumber = document.createElement("p");
 pageNumber.innerText = `Page: ${page}`;
@@ -43,6 +43,12 @@ updateCarButton.innerText = "UPDATE CAR";
 const randomCarsButton = document.createElement("button");
 randomCarsButton.innerText = 'Random Cars';
 
+const startRaceButton = document.createElement("button");
+startRaceButton.innerText = 'Start Race';
+
+const resetRaceButton = document.createElement("button");
+resetRaceButton.innerText = 'Reset Race';
+
 garageContainer.append(garageHeader);
 garageContainer.append(numberOfCars);
 garageContainer.append(pageNumber);
@@ -50,7 +56,7 @@ garageContainer.append(createCarForm);
 createCarForm.append(nameInput, colorInput, createCarButton);
 garageContainer.append(updateCarForm);
 updateCarForm.append(updateNameInput, updateColorInput, updateCarButton);
-garageContainer.append(randomCarsButton);
+garageContainer.append(randomCarsButton, startRaceButton, resetRaceButton);
 
 const winnersContainer = document.createElement("div");
 const winnersHeader = document.createElement("p");
@@ -77,7 +83,7 @@ for (let i = 0; i < Math.ceil(getCarsResult.length / 7); i += 1) {
     pageContainer.innerHTML = "";
     page = Number(pagiButton.innerText);
     pageNumber.innerText = `Page: ${page}`;
-    let getCarsPagiResult: [] = await API.getCarsPagi(page);
+    getCarsPagiResult = await API.getCarsPagi(page);
     getCarsPagiResult.forEach(
       (car: { name: string; color: string; id: number }) => {
         const carContainer = document.createElement("div");
@@ -87,6 +93,7 @@ for (let i = 0; i < Math.ceil(getCarsResult.length / 7); i += 1) {
           "http://www.w3.org/2000/svg",
           "svg",
         );
+        carIMG.id = `id${car.id}`;
         const carIMGUse = document.createElementNS(
           "http://www.w3.org/2000/svg",
           "use",
@@ -161,6 +168,7 @@ getCarsPagiResult.forEach(
       "http://www.w3.org/2000/svg",
       "svg",
     );
+    carIMG.id = `id${car.id}`;
     const carIMGUse = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "use",
@@ -242,6 +250,42 @@ function createRandomCars() {
   }
 }
 
+function startRace() {
+  let winner = false;
+  getCarsPagiResult.forEach(async (car: { name: string; color: string; id: number }) => {
+    let result = await API.startStopEngine(car.id, 'started');
+    const carIMG = document.querySelector(`#id${car.id}`);
+    let animation: Animation;
+    if (carIMG) {
+       animation = carIMG.animate({ transform: `translate(${window.innerWidth - 180}px, 0%)` }, { duration: (result.distance / result.velocity), fill: "forwards"});
+       animation.id = String(car.id);
+       animation.play();
+       try {
+        let driveResult: { success: Boolean} = await API.driveMode(car.id);
+        console.log(driveResult, car.name);
+        if (driveResult.success && !winner) {
+          let winNotification = document.createElement('p');
+          winNotification.innerText = `${car.name} won: ${Math.floor(result.distance / result.velocity) / 1000}s`;
+          winNotification.className = 'win-notification';
+          garageContainer.append(winNotification);
+          winner = true;
+        }
+        } catch {
+         animation?.pause();
+         throw new Error('The car has broken!');
+        }
+    }
+  })
+}
+
+function resetRace() {
+  let animations = document.getAnimations();
+  animations.forEach(animation => animation.cancel());
+  getCarsPagiResult.forEach(async (car: { name: string; color: string; id: number }) => {
+    API.startStopEngine(car.id, 'stopped');
+  })
+}
+
 garageButton.addEventListener("click", openGarage);
 winnersButton.addEventListener("click", openWinners);
 
@@ -259,4 +303,6 @@ updateCarForm.addEventListener("submit", () => {
   });
 });
 
-randomCarsButton.addEventListener('click', createRandomCars)
+randomCarsButton.addEventListener('click', createRandomCars);
+startRaceButton.addEventListener('click', startRace);
+resetRaceButton.addEventListener('click', resetRace);
