@@ -110,11 +110,16 @@ function drawPage() {
       carContainer.append(selectButton);
       const removeButton: HTMLButtonElement = document.createElement('button');
       removeButton.innerText = 'REMOVE';
-      removeButton.addEventListener('click', () => {
+      removeButton.addEventListener('click', async () => {
         API.deleteCar(car.id);
         API.deleteWinner(car.id);
-        carContainer.remove();
         numberOfCars.innerText = `Number of cars: ${Number(numberOfCars.innerText.match(/\d+/)) - 1}`;
+        pageContainer.innerHTML = '';
+        paginationContainer.innerHTML = '';
+        getCarsResult = await API.getCars();
+        getCarsPagiResult = await API.getCarsPagi(page);
+        drawPage();
+        drawPagination();
       });
       carContainer.append(removeButton);
       const startEngineButton: HTMLButtonElement = document.createElement('button');
@@ -300,18 +305,35 @@ function resetRace() {
 garageButton.addEventListener('click', openGarage);
 winnersButton.addEventListener('click', openWinners);
 
-createCarForm.addEventListener('submit', () => {
+createCarForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  numberOfCars.innerText = `Number of cars: ${Number(numberOfCars.innerText.match(/\d+/)) + 1}`;
   API.createCar({
     name: nameInput.value,
     color: colorInput.value,
   });
+  pageContainer.innerHTML = '';
+  paginationContainer.innerHTML = '';
+  getCarsResult = await API.getCars();
+  getCarsPagiResult = await API.getCarsPagi(page);
+  drawPage();
+  drawPagination();
+  nameInput.value = '';
 });
 
-updateCarForm.addEventListener('submit', () => {
+updateCarForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
   API.updateCar(selectedCar.id, {
     name: updateNameInput.value,
     color: updateColorInput.value,
   });
+  pageContainer.innerHTML = '';
+  paginationContainer.innerHTML = '';
+  getCarsResult = await API.getCars();
+  getCarsPagiResult = await API.getCarsPagi(page);
+  drawPage();
+  drawPagination();
+  nameInput.value = '';
 });
 
 randomCarsButton.addEventListener('click', createRandomCars);
