@@ -16,23 +16,23 @@ const numberOfCars: HTMLParagraphElement = document.createElement('p');
 let getCarsResult: [] = await API.getCars();
 numberOfCars.innerText = `Number of cars: ${getCarsResult.length}`;
 
-let page = 1;
+let page: number = 1;
 let getCarsPagiResult: [] = await API.getCarsPagi(page);
 
 const pageNumber: HTMLParagraphElement = document.createElement('p');
 pageNumber.innerText = `Page: ${page}`;
 
-const createCarForm = document.createElement('form');
-const nameInput = document.createElement('input');
-const colorInput = document.createElement('input');
+const createCarForm: HTMLFormElement = document.createElement('form');
+const nameInput: HTMLInputElement = document.createElement('input');
+const colorInput: HTMLInputElement = document.createElement('input');
 colorInput.type = 'color';
 const createCarButton: HTMLButtonElement = document.createElement('button');
 createCarButton.innerText = 'CREATE CAR';
 
-const updateCarForm = document.createElement('form');
-const updateNameInput = document.createElement('input');
+const updateCarForm: HTMLFormElement = document.createElement('form');
+const updateNameInput: HTMLInputElement = document.createElement('input');
 updateNameInput.disabled = true;
-const updateColorInput = document.createElement('input');
+const updateColorInput: HTMLInputElement = document.createElement('input');
 updateColorInput.type = 'color';
 const updateCarButton: HTMLButtonElement = document.createElement('button');
 updateCarButton.innerText = 'UPDATE CAR';
@@ -85,12 +85,12 @@ function drawPage() {
       const carContainer: HTMLDivElement = document.createElement('div');
       const carName: HTMLParagraphElement = document.createElement('p');
       carName.innerText = car.name;
-      const carIMG = document.createElementNS(
+      const carIMG: SVGSVGElement = document.createElementNS(
         'http://www.w3.org/2000/svg',
         'svg',
       );
       carIMG.id = `id${car.id}`;
-      const carIMGUse = document.createElementNS(
+      const carIMGUse: SVGUseElement = document.createElementNS(
         'http://www.w3.org/2000/svg',
         'use',
       );
@@ -118,8 +118,23 @@ function drawPage() {
         paginationContainer.innerHTML = '';
         getCarsResult = await API.getCars();
         getCarsPagiResult = await API.getCarsPagi(page);
+        if (getCarsPagiResult.length === 0) page -= 1;
         drawPage();
-        drawPagination();
+        async function goToPage() {
+          pageContainer.innerHTML = '';
+          pageNumber.innerText = `Page: ${page}`;
+          getCarsPagiResult = await API.getCarsPagi(page);
+          drawPage();
+        }
+        for (let i = 0; i < Math.ceil(getCarsResult.length / 7); i += 1) {
+          const pagiButton: HTMLButtonElement = document.createElement('button');
+          pagiButton.innerText = String(i + 1);
+          pagiButton.addEventListener('click', () => {
+            page = Number(pagiButton.innerText);
+            goToPage();
+          });
+          paginationContainer.append(pagiButton);
+        }
       });
       carContainer.append(removeButton);
       const startEngineButton: HTMLButtonElement = document.createElement('button');
@@ -130,7 +145,7 @@ function drawPage() {
       carContainer.append(startEngineButton, stopEngineButton);
       let animation: Animation;
       startEngineButton.addEventListener('click', async () => {
-        const result = await API.startStopEngine(car.id, 'started');
+        const result: { distance: number; velocity: number } = await API.startStopEngine(car.id, 'started');
         animation = carIMG.animate(
           { transform: `translate(${window.innerWidth - 180}px, 0%)` },
           {
@@ -138,21 +153,18 @@ function drawPage() {
             fill: 'forwards',
           },
         );
-        console.log(Math.floor(result.distance / result.velocity));
         startEngineButton.disabled = true;
         stopEngineButton.disabled = false;
         animation.play();
         try {
-          const driveResult = await API.driveMode(car.id);
-          console.log(driveResult);
+          await API.driveMode(car.id);
         } catch {
           animation.pause();
           throw new Error('The car has broken!');
         }
       });
       stopEngineButton.addEventListener('click', async () => {
-        const result = await API.startStopEngine(car.id, 'stopped');
-        console.log(result);
+        await API.startStopEngine(car.id, 'stopped');
         stopEngineButton.disabled = true;
         startEngineButton.disabled = false;
         animation.cancel();
@@ -163,15 +175,18 @@ function drawPage() {
 }
 
 function drawPagination() {
+  async function goToPage() {
+    pageContainer.innerHTML = '';
+    pageNumber.innerText = `Page: ${page}`;
+    getCarsPagiResult = await API.getCarsPagi(page);
+    drawPage();
+  }
   for (let i = 0; i < Math.ceil(getCarsResult.length / 7); i += 1) {
     const pagiButton: HTMLButtonElement = document.createElement('button');
     pagiButton.innerText = String(i + 1);
     pagiButton.addEventListener('click', async () => {
-      pageContainer.innerHTML = '';
       page = Number(pagiButton.innerText);
-      pageNumber.innerText = `Page: ${page}`;
-      getCarsPagiResult = await API.getCarsPagi(page);
-      drawPage();
+      goToPage();
     });
     paginationContainer.append(pagiButton);
   }
@@ -189,19 +204,21 @@ async function openWinners() {
   winnersContainer.hidden = false;
   garageContainer.hidden = true;
   const winnersList = await API.getWinners();
-  winnersPageNumber.innerText = `Page Number: 1`;
+  winnersPageNumber.innerText = 'Page Number: 1';
   numberOfWinners.innerText = `Number of winners: ${winnersList.length}`;
   winnersTable.innerHTML = '';
-  winnersList.forEach( async (winner: {id: number, wins: number, time: number}) => {
-    const winnerContainer = document.createElement('p');
-    const winnerInfo = await API.getCar(winner.id);
-    winnerContainer.innerText = `Number: ${winner.id} - Name: ${winnerInfo.name} - Wins: ${winner.wins} - Time: ${winner.time}s`;
-    winnersTable.append(winnerContainer);
-  });
+  winnersList.forEach(
+    async (winner: { id: number; wins: number; time: number }) => {
+      const winnerContainer: HTMLParagraphElement = document.createElement('p');
+      const winnerInfo: { id: number; name: string; color: string } = await API.getCar(winner.id);
+      winnerContainer.innerText = `Number: ${winner.id} - Name: ${winnerInfo.name} - Wins: ${winner.wins} - Time: ${winner.time}s`;
+      winnersTable.append(winnerContainer);
+    },
+  );
 }
 
 async function createRandomCars() {
-  const FirstName = [
+  const FirstName: string[] = [
     'Tesla',
     'BMW',
     'Mercedes',
@@ -213,7 +230,7 @@ async function createRandomCars() {
     'Jeep',
     'Lamborghini',
   ];
-  const SecondName = [
+  const SecondName: string[] = [
     'Model S',
     'Mustang',
     'X5',
@@ -225,7 +242,7 @@ async function createRandomCars() {
     'Continental',
     'Infinity',
   ];
-  const Promises = [];
+  const Promises: void[] = [];
   for (let i = 0; i < 100; i += 1) {
     Promises.push(
       API.createCar({
@@ -247,11 +264,11 @@ async function createRandomCars() {
 }
 
 function startRace() {
-  let winner = false;
+  let hasWon: boolean = false;
   getCarsPagiResult.forEach(
     async (car: { name: string; color: string; id: number }) => {
-      const result = await API.startStopEngine(car.id, 'started');
-      const carIMG = document.querySelector(`#id${car.id}`);
+      const result: { distance: number; velocity: number } = await API.startStopEngine(car.id, 'started');
+      const carIMG: Element | null = document.querySelector(`#id${car.id}`);
       let animation: Animation;
       if (carIMG) {
         animation = carIMG.animate(
@@ -262,13 +279,12 @@ function startRace() {
         animation.play();
         try {
           const driveResult: { success: boolean } = await API.driveMode(car.id);
-          console.log(driveResult, car.name);
-          if (driveResult.success && !winner) {
+          if (driveResult.success && !hasWon) {
             const winNotification: HTMLParagraphElement = document.createElement('p');
             winNotification.innerText = `${car.name} won: ${Math.floor(result.distance / result.velocity) / 1000}s`;
             winNotification.className = 'win-notification';
             garageContainer.append(winNotification);
-            winner = true;
+            hasWon = true;
             API.createWinner({
               id: car.id,
               wins: 1,
@@ -292,7 +308,7 @@ function startRace() {
 }
 
 function resetRace() {
-  const animations = document.getAnimations();
+  const animations: Animation[] = document.getAnimations();
   animations.forEach((animation) => animation.cancel());
   document.querySelector('.win-notification')?.remove();
   getCarsPagiResult.forEach(
