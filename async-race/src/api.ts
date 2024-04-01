@@ -1,5 +1,5 @@
 export async function getCars() {
-  const response = await fetch("http://localhost:3000/garage");
+  const response = await fetch('http://localhost:3000/garage');
   const result = await response.json();
   return result;
 }
@@ -19,10 +19,10 @@ export async function getCarsPagi(page: number) {
 }
 */
 export function createCar(car: { name: string; color: string }) {
-  fetch("http://localhost:3000/garage", {
-    method: "POST",
+  fetch('http://localhost:3000/garage', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(car),
   }).then((response) => response.json());
@@ -30,75 +30,81 @@ export function createCar(car: { name: string; color: string }) {
 
 export function deleteCar(id: number) {
   fetch(`http://localhost:3000/garage/${id}`, {
-    method: "DELETE",
+    method: 'DELETE',
   })
     .then((response) => response.json())
     .then(console.log);
 }
 
-export function updateCar(id: number, car) {
+export function updateCar(id: number, car: {}) {
   fetch(`http://localhost:3000/garage/${id}`, {
-    method: "PUT",
+    method: 'PUT',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(car),
   }).then((response) => response.json());
 }
 
-export async function startStopEngine(id: number, status) {
-  const response = await fetch(`http://localhost:3000/engine?id=${id}&status=${status}`, {
-    method: "PATCH",
-  });
+export async function startStopEngine(id: number, status: string) {
+  const response = await fetch(
+    `http://localhost:3000/engine?id=${id}&status=${status}`,
+    {
+      method: 'PATCH',
+    },
+  );
   const result = await response.json();
   return result;
 }
 
 export async function driveMode(id: number) {
-  const response = await fetch(`http://localhost:3000/engine?id=${id}&status=drive`, {
-    method: "PATCH",
-  })
+  const response = await fetch(
+    `http://localhost:3000/engine?id=${id}&status=drive`,
+    {
+      method: 'PATCH',
+    },
+  );
   const result = await response.json();
   return result;
 }
 
 export async function getWinners() {
-  const response = await fetch("http://localhost:3000/winners");
+  const response = await fetch('http://localhost:3000/winners');
   const result = await response.json();
   return result;
 }
 
-function getWinner(id: number) {
-  fetch(`http://localhost:3000/winners/${id}`)
-    .then((response) => response.json())
-    .then(console.log);
+export async function getWinner(id: number) {
+  const response = await fetch(`http://localhost:3000/winners/${id}`);
+  const result = await response.json();
+  return result;
 }
 
-function createWinner(car) {
-  fetch("http://localhost:3000/winners", {
-    method: "POST",
+export async function createWinner(winner: {}) {
+  const response = await fetch('http://localhost:3000/winners', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(car),
-  })
-    .then((response) => response.json())
-    .then(console.log);
+    body: JSON.stringify(winner),
+  });
+  const result = await response.json();
+  return result;
 }
 
 export function deleteWinner(id: number) {
   fetch(`http://localhost:3000/winners/${id}`, {
-    method: "DELETE",
+    method: 'DELETE',
   }).then((response) => response.json());
 }
 
-function updateWinner(id: number, car) {
+export function updateWinner(id: number, winner: {}) {
   fetch(`http://localhost:3000/winners/${id}`, {
-    method: "PUT",
+    method: 'PUT',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(car),
+    body: JSON.stringify(winner),
   })
     .then((response) => response.json())
     .then(console.log);
