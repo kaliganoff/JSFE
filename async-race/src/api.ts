@@ -12,12 +12,12 @@ export async function getCarsPagi(page: number) {
   return result;
 }
 
-/* function getCar(id: number) {
-  fetch(`http://localhost:3000/garage/${id}`)
-    .then((response) => response.json())
-    .then(console.log);
+export async function getCar(id: number) {
+  const response = await fetch(`http://localhost:3000/garage/${id}`);
+  const result = await response.json();
+  return result;
 }
-*/
+
 export function createCar(car: { name: string; color: string }) {
   fetch('http://localhost:3000/garage', {
     method: 'POST',

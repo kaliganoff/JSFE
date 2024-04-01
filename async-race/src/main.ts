@@ -59,11 +59,13 @@ const winnersContainer: HTMLDivElement = document.createElement('div');
 const winnersHeader: HTMLParagraphElement = document.createElement('p');
 winnersHeader.innerText = 'WINNERS';
 const numberOfWinners: HTMLParagraphElement = document.createElement('p');
+const winnersPageNumber: HTMLParagraphElement = document.createElement('p');
 const getWinnersResult: [] = await API.getWinners();
 numberOfWinners.innerText = `${getWinnersResult.length}`;
 const winnersTable: HTMLDivElement = document.createElement('div');
 winnersContainer.append(winnersHeader);
 winnersContainer.append(numberOfWinners);
+winnersContainer.append(winnersPageNumber);
 winnersContainer.append(winnersTable);
 winnersContainer.hidden = true;
 
@@ -182,11 +184,13 @@ async function openWinners() {
   winnersContainer.hidden = false;
   garageContainer.hidden = true;
   const winnersList = await API.getWinners();
-  numberOfWinners.innerText = `${winnersList.length}`;
+  winnersPageNumber.innerText = `Page Number: 1`;
+  numberOfWinners.innerText = `Number of winners: ${winnersList.length}`;
   winnersTable.innerHTML = '';
-  winnersList.forEach((winner: {}) => {
+  winnersList.forEach( async (winner: {id: number, wins: number, time: number}) => {
     const winnerContainer = document.createElement('p');
-    winnerContainer.innerText = JSON.stringify(winner);
+    const winnerInfo = await API.getCar(winner.id);
+    winnerContainer.innerText = `Number: ${winner.id} - Name: ${winnerInfo.name} - Wins: ${winner.wins} - Time: ${winner.time}s`;
     winnersTable.append(winnerContainer);
   });
 }
