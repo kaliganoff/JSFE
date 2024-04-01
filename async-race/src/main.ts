@@ -45,6 +45,7 @@ startRaceButton.innerText = 'Start Race';
 
 const resetRaceButton: HTMLButtonElement = document.createElement('button');
 resetRaceButton.innerText = 'Reset Race';
+resetRaceButton.disabled = true;
 
 garageContainer.append(garageHeader);
 garageContainer.append(numberOfCars);
@@ -264,6 +265,10 @@ async function createRandomCars() {
 }
 
 function startRace() {
+  startRaceButton.disabled = true;
+  randomCarsButton.disabled = true;
+  createCarButton.disabled = true;
+  updateCarButton.disabled = true;
   let hasWon: boolean = false;
   getCarsPagiResult.forEach(
     async (car: { name: string; color: string; id: number }) => {
@@ -280,6 +285,7 @@ function startRace() {
         try {
           const driveResult: { success: boolean } = await API.driveMode(car.id);
           if (driveResult.success && !hasWon) {
+            resetRaceButton.disabled = false;
             const winNotification: HTMLParagraphElement = document.createElement('p');
             winNotification.innerText = `${car.name} won: ${Math.floor(result.distance / result.velocity) / 1000}s`;
             winNotification.className = 'win-notification';
@@ -308,6 +314,11 @@ function startRace() {
 }
 
 function resetRace() {
+  startRaceButton.disabled = false;
+  resetRaceButton.disabled = true;
+  randomCarsButton.disabled = false;
+  createCarButton.disabled = false;
+  updateCarButton.disabled = false;
   const animations: Animation[] = document.getAnimations();
   animations.forEach((animation) => animation.cancel());
   document.querySelector('.win-notification')?.remove();
