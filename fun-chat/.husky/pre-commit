@@ -1,3 +1,2 @@
 cd fun-chat
-npm test
-exit 1
+npm run lint
