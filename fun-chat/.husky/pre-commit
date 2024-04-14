@@ -1,0 +1,3 @@
+cd fun-chat
+npm test
+exit 1
