@@ -1,0 +1,10 @@
+export const logInForm = document.createElement("form");
+logInForm.className = "log-in-form";
+export const loginInput = document.createElement("input");
+export const passwordInput = document.createElement("input");
+export const submitButton = document.createElement("button");
+submitButton.innerText = "Log In";
+export const error = document.createElement("p");
+export const errorPassword = document.createElement("p");
+error.className = "log-in-form-error";
+errorPassword.className = "log-in-form-error";
