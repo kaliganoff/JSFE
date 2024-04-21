@@ -5,7 +5,12 @@ export const logOutButton = document.createElement("button");
 appName.innerText = "Fun Chat";
 logOutButton.innerText = "Log Out";
 header.append(user, appName, logOutButton);
+
 export const chatContainer = document.createElement("div");
+export const userListContainer = document.createElement("div");
+export const messageContainer = document.createElement("div");
+chatContainer.append(userListContainer, messageContainer);
+
 export const footer = document.createElement("footer");
 export const school = document.createElement("span");
 school.innerText = "RSSchool";
