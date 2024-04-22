@@ -5,7 +5,7 @@ import ws from "../ws";
 import { logInForm, loginInput, passwordInput, submitButton } from "./consts";
 import validate from "./validate";
 
-let password = "";
+let password: string = "";
 let currentUser: User;
 
 function logIn() {

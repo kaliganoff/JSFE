@@ -7,8 +7,10 @@ import {
 } from "./consts";
 
 export default function validate() {
-  const validateName = /^[A-Z][A-Za-z-][A-Za-z-]+$/.test(loginInput.value);
-  const validateSurname = /^[A-Z][A-Za-z-]{2}[A-Za-z-]+$/.test(
+  const validateName: boolean = /^[A-Z][A-Za-z-][A-Za-z-]+$/.test(
+    loginInput.value,
+  );
+  const validateSurname: boolean = /^[A-Z][A-Za-z-]{2}[A-Za-z-]+$/.test(
     passwordInput.value,
   );
   if (!/^[A-Z]/.test(loginInput.value)) {
@@ -17,12 +19,11 @@ export default function validate() {
     loginInput.insertAdjacentElement("afterend", error);
   } else if (!/^[A-Za-z-]+$/.test(loginInput.value)) {
     loginInput.style.borderColor = "red";
-    error.innerText =
-      "The first name must contain only English letters and '-'";
+    error.innerText = "The login must contain only English letters and '-'";
     loginInput.insertAdjacentElement("afterend", error);
   } else if (!/^[A-Za-z-]{2}[A-Za-z-]+$/.test(loginInput.value)) {
     loginInput.style.borderColor = "red";
-    error.innerText = "The first name must contain three or more characters";
+    error.innerText = "The login must contain three or more characters";
     loginInput.insertAdjacentElement("afterend", error);
   } else if (validateName) {
     error.remove();
@@ -36,12 +37,12 @@ export default function validate() {
   } else if (!/^[A-Za-z-]+$/.test(passwordInput.value)) {
     passwordInput.style.borderColor = "red";
     errorPassword.innerText =
-      "The surname must contain only English letters and '-'";
+      "The password must contain only English letters and '-'";
     passwordInput.insertAdjacentElement("afterend", errorPassword);
   } else if (!/^[A-Za-z-]{3}[A-Za-z-]+$/.test(passwordInput.value)) {
     passwordInput.style.borderColor = "red";
     errorPassword.innerText =
-      "The surname must contain four or more characters";
+      "The password must contain four or more characters";
     passwordInput.insertAdjacentElement("afterend", errorPassword);
   } else if (validateSurname) {
     errorPassword.remove();
