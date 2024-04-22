@@ -1,4 +1,5 @@
 import { User } from "../Interfaces/interfaces";
+import { mainPageContainer, userListContainer } from "../mainPage/consts";
 import drawMainPage from "../mainPage/mainPage";
 import ws from "../ws";
 import { logInForm, loginInput, passwordInput, submitButton } from "./consts";
@@ -41,6 +42,8 @@ ws.addEventListener("message", (e) => {
   ) {
     delete sessionStorage.user;
     document.body.innerHTML = "";
+    mainPageContainer.innerHTML = "";
+    userListContainer.innerHTML = "";
     drawLogInForm();
   } else if (
     message.type === "USER_LOGIN" &&

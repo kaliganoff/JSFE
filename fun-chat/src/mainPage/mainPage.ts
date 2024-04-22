@@ -1,16 +1,24 @@
-import { User } from "../Interfaces/interfaces";
+import { User, Message } from "../Interfaces/interfaces";
 import ws from "../ws";
 import {
   chatContainer,
+  chatInput,
+  dialogueContainer,
+  dialogueContainerWrapper,
   footer,
   header,
   logOutButton,
+  mainPageContainer,
+  messageContainer,
   user,
   userListContainer,
 } from "./consts";
 import logOut from "./logOut";
+import selectUser from "./selectUser";
+import sendMessage from "./sendMessage";
 
 let currentUser: User;
+let selectedUser: User;
 
 function getUsers() {
   ws.send(
@@ -32,7 +40,8 @@ function getUsers() {
 export default function drawMainPage(sentCurrentUser: User) {
   currentUser = sentCurrentUser;
   user.innerText = currentUser.login;
-  document.body.append(header, chatContainer, footer);
+  mainPageContainer.append(header, chatContainer, footer);
+  document.body.append(mainPageContainer);
   getUsers();
 }
 
@@ -50,6 +59,10 @@ ws.addEventListener("message", (e) => {
         userLi.innerText = `${el.login} - ${message.type === "USER_ACTIVE" ? "Online" : "Offline"}`;
         userLi.dataset.id = el.login;
         userListContainer.append(userLi);
+        userLi.addEventListener("click", () => {
+          selectedUser = el;
+          selectUser(el.login, el.isLogined);
+        });
       }
     });
   } else if (
@@ -58,5 +71,39 @@ ws.addEventListener("message", (e) => {
   ) {
     userListContainer.innerHTML = "";
     getUsers();
+  } else if (message.type === "MSG_SEND") {
+    selectUser(selectedUser.login, selectedUser.isLogined);
+  }
+});
+
+messageContainer.addEventListener("submit", (e) => {
+  e.preventDefault();
+  sendMessage(chatInput.value, selectedUser);
+  chatInput.value = "";
+  setTimeout(() => {
+    dialogueContainerWrapper.scrollTop = dialogueContainer.scrollHeight;
+  }, 50);
+});
+
+ws.addEventListener("message", (e) => {
+  const message = JSON.parse(e.data);
+  if (message.type === "MSG_FROM_USER") {
+    dialogueContainer.innerHTML = "";
+    const { messages } = message.payload;
+    messages.forEach((msg: Message) => {
+      const messageLi = document.createElement("div");
+      let msgStatus = "";
+      if (msg.from === currentUser.login) {
+        if (msg.status.isReaded) {
+          msgStatus = "Read";
+        } else if (msg.status.isDelivered) {
+          msgStatus = "Delivered";
+        } else {
+          msgStatus = "Not delivered";
+        }
+      }
+      messageLi.innerText = `${msg.from}: ${msg.text} ${String(new Date(msg.datetime).getHours()).padStart(2, "0")}:${String(new Date(msg.datetime).getMinutes()).padStart(2, "0")} ${msgStatus}`;
+      dialogueContainer.append(messageLi);
+    });
   }
 });
