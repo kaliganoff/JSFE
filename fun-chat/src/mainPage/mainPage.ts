@@ -15,6 +15,7 @@ import {
   userListContainer,
 } from "./consts";
 import deleteMessage from "./deleteMessage";
+import editMessage from "./editMessage";
 import logOut from "./logOut";
 import selectUser from "./selectUser";
 import sendMessage from "./sendMessage";
@@ -79,7 +80,8 @@ ws.addEventListener("message", (e) => {
   } else if (
     message.type === "MSG_SEND" ||
     message.type === "MSG_DELIVER" ||
-    message.type === "MSG_DELETE"
+    message.type === "MSG_DELETE" ||
+    message.type === "MSG_EDIT"
   ) {
     if (message.type === "MSG_SEND") {
       setTimeout(() => {
@@ -126,6 +128,13 @@ ws.addEventListener("message", (e) => {
           deleteMessage(msg.id);
         });
         messageLi.append(deleteButton);
+        const editButton: HTMLButtonElement = document.createElement("button");
+        editButton.className = "hover";
+        editButton.innerText = "Edit";
+        editButton.addEventListener("click", () => {
+          editMessage(msg.id, msg.text);
+        });
+        messageLi.append(editButton);
       }
       dialogueContainer.append(messageLi);
     });

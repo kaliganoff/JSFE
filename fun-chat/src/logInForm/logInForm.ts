@@ -2,7 +2,13 @@ import { User } from "../Interfaces/interfaces";
 import { mainPageContainer, userListContainer } from "../mainPage/consts";
 import drawMainPage from "../mainPage/mainPage";
 import ws from "../ws";
-import { logInForm, loginInput, passwordInput, submitButton } from "./consts";
+import {
+  aboutButton,
+  logInForm,
+  loginInput,
+  passwordInput,
+  submitButton,
+} from "./consts";
 import validate from "./validate";
 
 let password: string = "";
@@ -25,6 +31,7 @@ function logIn() {
 
 export default function drawLogInForm() {
   logInForm.append(loginInput, passwordInput, submitButton);
+  document.body.append(aboutButton);
   document.body.append(logInForm);
 }
 

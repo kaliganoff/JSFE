@@ -56,3 +56,14 @@
 .hover {
   cursor: pointer;
 }
+
+.about-page {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  z-index: 1;
+}
