@@ -1,4 +1,8 @@
-import products from './assets/products.json' assert {type: 'json'}
+let products;
+
+await fetch('../assets/products.json')
+    .then(response => response.json())
+    .then(data => products = data);
 
 const coffee = Object.fromEntries(Object.entries(products).slice(0, 8));
 const tea = Object.fromEntries(Object.entries(products).slice(8, 12));
