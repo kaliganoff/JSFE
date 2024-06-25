@@ -1,6 +1,10 @@
 import "./style.css";
 import * as API from "./api";
 
+const loader: HTMLParagraphElement = document.createElement("p");
+loader.innerText = 'The server is sleeping, please, wait...';
+document.body.append(loader);
+
 const viewDiv: HTMLDivElement = document.createElement("div");
 const garageButton: HTMLButtonElement = document.createElement("button");
 const winnersButton: HTMLButtonElement = document.createElement("button");
@@ -70,6 +74,7 @@ winnersContainer.append(winnersPageNumber);
 winnersContainer.append(winnersTable);
 winnersContainer.hidden = true;
 
+document.body.innerHTML = '';
 document.body.append(viewDiv);
 viewDiv.append(garageButton);
 viewDiv.append(winnersButton);
